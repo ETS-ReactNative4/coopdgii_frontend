@@ -41,27 +41,7 @@ export default function Login_drawer() {
         }}
       />
 
-      {/*
-      <Drawer.Screen
-      name="Localizacion"
-      component={Location}
-      options={{
-          drawerIcon: ({ color }) => (
-            <Entypo name="location-pin" size={24} color="black" />
-          ),
-        }}
-      />
 
-      <Drawer.Screen
-      name="Contacto"
-      component={Contacto}
-      options={{
-          drawerIcon: ({ color }) => (
-            <AntDesign name="contacts" size={24} color="black" />
-          ),
-        }}
-      />
-      */}
     </Drawer.Navigator>
   );
 }
