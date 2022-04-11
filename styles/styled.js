@@ -7,12 +7,12 @@ const Colors ={
     black:"black"
 }
 
-const Text = {
+const Texts_var = {
     title:35,
-
+    iconText:20,
     fwBold:"bold"
 }
 
 
 
-export {Colors, Text}
+export {Colors, Texts_var}
