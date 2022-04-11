@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Colors, Text } from "./styled";
+import { Colors, Texts_var } from "./styled";
 
 
 const { width } = Dimensions.get("window");
@@ -67,9 +67,9 @@ const contact = StyleSheet.create({
     body_title: {
       textAlign: "center",
       marginBottom: 10,
-      fontSize: Text.title,
+      fontSize: Texts_var.title,
       color: Colors.black,
-      fontWeight: Text.fwBold,
+      fontWeight: Texts_var.fwBold,
     },
     body_description: {
       textAlign: "center",

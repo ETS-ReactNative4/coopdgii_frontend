@@ -7,7 +7,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-
+import Contact from "../screens/Contact";
 const Drawer = createDrawerNavigator();
 
 export default function Login_drawer() {
@@ -40,8 +40,27 @@ export default function Login_drawer() {
           ),
         }}
       />
+    <Drawer.Screen
+      name="Contacto"
+      component={Contact}
+      options={{
+          drawerIcon: ({ color }) => (
+            <AntDesign name="contacts" size={24} color={color} />
+          ),
+        }}
+      />
 
-
+      {/*
+      <Drawer.Screen
+      name="Localizacion"
+      component={Location}
+      options={{
+          drawerIcon: ({ color }) => (
+            <Entypo name="location-pin" size={24} color="black" />
+          ),
+        }}
+      />
+      */}
     </Drawer.Navigator>
   );
 }

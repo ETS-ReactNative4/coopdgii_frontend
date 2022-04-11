@@ -1,5 +1,4 @@
-import React from "react";
-import React from "react";
+import react from "react";
 import { TouchableOpacity, StyleSheet, Text, View } from "react-native";
 import { Colors, Texts_var } from "../styles/styled";
 
@@ -13,7 +12,6 @@ const Icon_button = ({ handlePress, icon, title }) => {
     </TouchableOpacity>
   );
 };
-
 
 const style = StyleSheet.create({
   container: {
