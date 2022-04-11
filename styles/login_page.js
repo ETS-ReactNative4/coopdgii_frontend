@@ -1,11 +1,12 @@
 import { StyleSheet, useWindowDimensions, StatusBar } from "react-native";
+import { Colors } from "./styled";
 
 export const styles = StyleSheet.create({
   //Login Page
   root_container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
-    backgroundColor: "#F9FBFC",
+    backgroundColor: Colors.fourth,
     alignItems: "center",
     padding: 20,
   },

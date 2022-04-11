@@ -1,5 +1,6 @@
 import { View, Text, StyleSheet, StatusBar } from "react-native";
 import React from "react";
+import { Texts_var, Colors } from "../styles/styled";
 
 export default function Divisas() {
   return (
@@ -9,31 +10,67 @@ export default function Divisas() {
           height: "8%",
           alignItems: "center",
           justifyContent: "center",
-          backgroundColor: "#239B56",
-          borderBottomColor: "#000",
+          backgroundColor: Colors.third,
+          borderBottomColor: Colors.black,
           borderBottomWidth: 2,
         }}
       >
-        <Text style={{ color: "#fff" }}>Tasas de Cambio</Text>
+        <Text
+          style={{
+            color: Texts_var.ratesfont,
+            fontWeight: "bold",
+            fontSize: 16,
+          }}
+        >
+          Tasas de Cambio
+        </Text>
       </View>
       <View style={styles.rates_us_box}>
         <View style={{ marginLeft: "3%", marginRight: "50%" }}>
-          <Text style={{ color: "#51d1f6", fontSize: 16, marginBottom: "4%" }}>
+          <Text
+            style={{
+              color: Texts_var.ratesAque,
+              fontSize: 16,
+              marginBottom: "4%",
+            }}
+          >
             Dólar
           </Text>
-          <Text style={{ color: "#00008B", fontSize: 15, marginTop: 10 }}>
+          <Text
+            style={{
+              color: Texts_var.ratesDark_blue,
+              fontSize: 15,
+              marginTop: 10,
+            }}
+          >
             USD
           </Text>
         </View>
         <View style={{ marginRight: "5%" }}>
-          <Text style={{ color: "#A9A9A9", fontSize: 17 }}>Compra</Text>
-          <Text style={{ color: "#00008B", fontSize: 18, marginTop: 10 }}>
+          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
+            Compra
+          </Text>
+          <Text
+            style={{
+              color: Texts_var.ratesDark_blue,
+              fontSize: 18,
+              marginTop: 10,
+            }}
+          >
             54.40
           </Text>
         </View>
         <View>
-          <Text style={{ color: "#A9A9A9", fontSize: 17 }}>Venta</Text>
-          <Text style={{ color: "#00008B", fontSize: 18, marginTop: 10 }}>
+          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
+            Venta
+          </Text>
+          <Text
+            style={{
+              color: Texts_var.ratesDark_blue,
+              fontSize: 18,
+              marginTop: 10,
+            }}
+          >
             55.50
           </Text>
         </View>
@@ -41,22 +78,50 @@ export default function Divisas() {
       {/**/}
       <View style={[styles.rates_us_box, { marginTop: "3%" }]}>
         <View style={{ marginLeft: "3%", marginRight: "50%" }}>
-          <Text style={{ color: "#51d1f6", fontSize: 16, marginBottom: "4%" }}>
+          <Text
+            style={{
+              color: Texts_var.ratesAque,
+              fontSize: 16,
+              marginBottom: "4%",
+            }}
+          >
             Euro
           </Text>
-          <Text style={{ color: "#00008B", fontSize: 15, marginTop: 10 }}>
+          <Text
+            style={{
+              color: Texts_var.ratesDark_blue,
+              fontSize: 15,
+              marginTop: 10,
+            }}
+          >
             EUR
           </Text>
         </View>
         <View style={{ marginRight: "5%" }}>
-          <Text style={{ color: "#A9A9A9", fontSize: 17 }}>Compra</Text>
-          <Text style={{ color: "#00008B", fontSize: 18, marginTop: 10 }}>
+          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
+            Compra
+          </Text>
+          <Text
+            style={{
+              color: Texts_var.ratesDark_blue,
+              fontSize: 18,
+              marginTop: 10,
+            }}
+          >
             59.00
           </Text>
         </View>
         <View>
-          <Text style={{ color: "#A9A9A9", fontSize: 17 }}>Venta</Text>
-          <Text style={{ color: "#00008B", fontSize: 18, marginTop: 10 }}>
+          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
+            Venta
+          </Text>
+          <Text
+            style={{
+              color: Texts_var.ratesDark_blue,
+              fontSize: 18,
+              marginTop: 10,
+            }}
+          >
             63.00
           </Text>
         </View>
@@ -69,11 +134,11 @@ const styles = StyleSheet.create({
   rates_box: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
-    backgroundColor: "#F9FBFC",
+    backgroundColor: Colors.fourth,
   },
   rates_us_box: {
     flexDirection: "row",
-    backgroundColor: "#fff",
+    backgroundColor: Texts_var.ratesfont,
     paddingVertical: 40,
   },
 });

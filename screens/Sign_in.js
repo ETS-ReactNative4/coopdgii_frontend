@@ -5,8 +5,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  ToastAndroid,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styles } from "../styles/login_page";
 import Logo from "../assets/images/logo.png";
 import Women from "../assets/images/woman-writing.jpg";
@@ -14,6 +15,8 @@ import { Entypo } from "@expo/vector-icons";
 import Custom_input from "../components/Custom_input";
 import Custom_button from "../components/Custom_button";
 import Btn_link from "../components/Btn_link";
+import { wifi_Status } from "../hooks/wifiStatus";
+import { Colors } from "../styles/styled";
 
 const initialUser = {
   ids: "",
@@ -24,6 +27,10 @@ export default function Sign_in({ navigation }) {
   const { height } = useWindowDimensions();
 
   const [user, setUser] = useState(initialUser);
+  const [connectionStatus, setConnectionStatus] = useState(false);
+  wifi_Status().then((res) => {
+    setConnectionStatus(res);
+  });
 
   const handleChange = (name, text) => {
     setUser({
@@ -37,8 +44,12 @@ export default function Sign_in({ navigation }) {
   };
 
   function verifyData() {
-    if (!user.ids.trim() || !user.pass.trim()) {
-      Alert.alert("Adevertencia", "Complete los campos y intentelo de nuevo");
+    if (!connectionStatus) {
+      ToastAndroid.show("No hay conexion a internet", ToastAndroid.LONG);
+    } else if (!user.ids.trim() || !user.pass.trim()) {
+      Alert.alert("Advertencia", "Complete los campos y intentelo de nuevo", [
+        { text: "Ok" },
+      ]);
     } else {
       Alert.alert("Exito", "Completaste los campos", [{ text: "Ok" }]);
     }
@@ -48,7 +59,12 @@ export default function Sign_in({ navigation }) {
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.root_container}>
         <View style={{ position: "relative", width: "100%" }}>
-          <Entypo name="menu" size={26} color="#239B56" onPress={openDrawer} />
+          <Entypo
+            name="menu"
+            size={26}
+            color={Colors.third}
+            onPress={openDrawer}
+          />
         </View>
         <Image
           source={Logo}

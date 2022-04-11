@@ -1,5 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
+import { Texts_var } from "../styles/styled";
 
 export default function Btn_link({ onPress, text }) {
   return (
@@ -17,6 +18,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   text_link: {
-    color: "#00008B",
+    color: Texts_var.ratesDark_blue,
   },
 });

@@ -1,8 +1,15 @@
-import React from "react";
-import { View, StyleSheet, Dimensions, Text } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Dimensions, Text, StatusBar } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import { wifi_Status } from "../hooks/wifiStatus";
+import Loading from "./loadingPage";
 
 export default function Location() {
+  const [connectionStatus, setConnectionStatus] = useState(false);
+  wifi_Status().then((res) => {
+    setConnectionStatus(res);
+  });
+
   const markers = [
     {
       title: "Santo Domingo",
@@ -16,14 +23,14 @@ export default function Location() {
       },
     },
     {
-      title: "Torre xxi",
+      title: "Torre XXI",
       coordinate: {
         latitude: 18.465587466992208,
         longitude: -69.94285975416142,
       },
     },
     {
-      title: "Torre xxi",
+      title: "Torre XXI",
       coordinate: {
         latitude: 18.465587466992208,
         longitude: -69.94285975416142,
@@ -37,7 +44,7 @@ export default function Location() {
       },
     },
   ];
-  return (
+  return connectionStatus ? (
     <View style={styles.container}>
       <MapView
         style={styles.map}
@@ -60,11 +67,14 @@ export default function Location() {
         <Text>Buscador</Text>
       </View>
     </View>
+  ) : (
+    <Loading />
   );
 }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: StatusBar.currentHeight,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
