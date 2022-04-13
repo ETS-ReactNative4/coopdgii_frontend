@@ -1,5 +1,6 @@
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { Colors } from "../styles/styled";
 const Links = [
   {
     idx: 1,

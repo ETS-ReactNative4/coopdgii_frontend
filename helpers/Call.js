@@ -1,4 +1,5 @@
 import { AntDesign } from "@expo/vector-icons";
+import { Colors } from "../styles/styled";
 
 const Call = [
   {
