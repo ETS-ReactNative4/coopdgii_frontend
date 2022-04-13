@@ -9,6 +9,7 @@ const Colors = {
   bg_btnColor: "#F7F5F2",
   close: "red",
   black: "black",
+  white:"FFFBE7"
 };
 
 const Texts_var = {
