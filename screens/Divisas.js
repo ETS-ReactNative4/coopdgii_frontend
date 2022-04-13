@@ -1,10 +1,23 @@
 import { View, Text, StyleSheet, StatusBar } from "react-native";
 import React from "react";
 import { Texts_var, Colors } from "../styles/styled";
+import btnDrawerStyle from "../styles/btnDrawerStyle";
+import { Entypo } from "@expo/vector-icons";
+import Btn_icon from "../components/Btn_icon";
 
-export default function Divisas() {
+export default function Divisas({navigation}) {
+
+  const openDrawer = () => {
+    navigation.toggleDrawer();
+  };
+
   return (
     <View style={styles.rates_box}>
+      <Btn_icon
+        icon={<Entypo name="menu" size={24} color={Colors.white} />}
+        onPress={openDrawer}
+        styleButton={btnDrawerStyle.btn}
+      />
       <View
         style={{
           height: "8%",
