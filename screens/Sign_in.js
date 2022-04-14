@@ -25,9 +25,10 @@ const initialUser = {
 
 export default function Sign_in({ navigation }) {
   const { height } = useWindowDimensions();
-
   const [user, setUser] = useState(initialUser);
   const [connectionStatus, setConnectionStatus] = useState(false);
+  const [loginstate, setLoginState] = useState();
+
   wifi_Status().then((res) => {
     setConnectionStatus(res);
   });
@@ -51,7 +52,7 @@ export default function Sign_in({ navigation }) {
         { text: "Ok" },
       ]);
     } else {
-      Alert.alert("Exito", "Completaste los campos", [{ text: "Ok" }]);
+      navigation.replace("Home");
     }
   }
 
