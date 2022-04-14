@@ -24,7 +24,7 @@ const initialUser = {
 };
 
 export default function Sign_in({ navigation }) {
-  const { height } = useWindowDimensions();
+  const { height, width } = useWindowDimensions();
 
   const [user, setUser] = useState(initialUser);
   const [connectionStatus, setConnectionStatus] = useState(false);
@@ -90,11 +90,14 @@ export default function Sign_in({ navigation }) {
           onPress={() => console.log("Pressed")}
           text={"¿Tiene Problemas para iniciar sesion?"}
         />
+        <View style={{ height:height / 3, position:"absolute", bottom:0, width:width}}>
+          
         <Image
           source={Women}
-          style={[styles.footer_image, { height: height * 0.4 }]}
-          resizeMode="contain"
+          style={[styles.footer_image, { height:"100%", maxWidth:"100%" }]}
+          
         />
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );

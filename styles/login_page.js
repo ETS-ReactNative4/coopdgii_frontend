@@ -16,7 +16,6 @@ export const styles = StyleSheet.create({
     maxHeight: 200,
   },
   footer_image: {
-    marginTop: 10,
     opacity: 0.4,
   },
 });

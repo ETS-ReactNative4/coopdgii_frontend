@@ -27,7 +27,7 @@ export default function Custom_input({
 const styles = StyleSheet.create({
   input_container: {
     position: "relative",
-    marginTop: 30,
+    marginTop: 10,
     backgroundColor: "#fff",
     width: "100%",
     borderWidth: 1,
