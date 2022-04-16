@@ -1,14 +1,18 @@
-import { StyleSheet, useWindowDimensions, StatusBar } from "react-native";
+import { StyleSheet, useWindowDimensions, StatusBar, Dimensions } from "react-native";
+import { backgroundColor } from "react-native/Libraries/Components/View/ReactNativeStyleAttributes";
 import { Colors } from "./styled";
 
 export const styles = StyleSheet.create({
   //Login Page
   root_container: {
-    flex: 1,
+    height:Dimensions.get("screen").height,
+    backgroundColor:"red",
+   
     marginTop: StatusBar.currentHeight,
     backgroundColor: Colors.fourth,
     alignItems: "center",
     padding: 20,
+    alignContent:"flex-end"
   },
   logo: {
     width: "70%",
