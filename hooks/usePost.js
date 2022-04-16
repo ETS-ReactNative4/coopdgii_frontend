@@ -1,32 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { Alert } from "react-native";
+import React, { useEffect, useState } from "react";
 
-export default function usePost(url, response, datos) {
-  const [data, setData] = useState(response);
-  const [isLoanding, setIsLoanding] = useState(false);
-
-  async function getData(url) {
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: datos,
-      });
-      const data = await res.json();
-      setData({
-        isLoading: false,
-        data,
-      });
-    } catch (error) {
-      Alert.alert("Error", error, [{ text: "Ok" }]);
-    }
-  }
+function usePost(url, user, pass) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [datainfo, setDataInfo] = useState(null);
 
   useEffect(() => {
-    getData(url);
+    console.log("se enviaron datos, y no has escrito nada");
+    setLoading(true);
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      },
+      body: `usuario=${user}&clave=${pass}`,
+    })
+      .then((res) => res.json())
+      .then((responseData) => {
+        setData(responseData);
+        setDataInfo(responseData["success"]);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [url]);
 
-  return data;
+  return {
+    data,
+    loading,
+    error,
+    datainfo,
+  };
 }
+
+export default usePost;

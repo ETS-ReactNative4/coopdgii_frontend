@@ -4,26 +4,52 @@ import {
   StyleSheet,
   StatusBar,
   ImageBackground,
+  Pressable,
+  Alert,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
+import { Foundation } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import Women from "../assets/images/woman-writing.jpg";
 import { Colors } from "../styles/styled";
 import { Texts_var } from "../styles/styled";
 import moment from "moment";
 import { Picker } from "@react-native-picker/picker";
 import All_products from "../components/All_products";
-import Prestamos from "./Prestamos";
+import PostData from "../helpers/postData";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Cuentas({ navigation }) {
+  const [name, setName] = useState();
+  useEffect(() => {
+    getToken();
+  });
+
+  async function getToken() {
+    try {
+      await AsyncStorage.getItem("token").then((value) => {
+        if (value != null) {
+          let user = JSON.parse(value);
+          setName(user.Nombre);
+        } else {
+          console.log("No hay nada");
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   const openSideMenu = () => {
     navigation.toggleDrawer();
   };
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("Mostrar todos mis productos");
   return (
     <View style={styles.container}>
-      <View style={{ width: "100%", height: "30%" }}>
+      <View style={{ width: "100%", height: 230 }}>
         <View style={{ width: "100%", height: "100%", position: "relative" }}>
           <ImageBackground
             source={Women}
@@ -45,17 +71,12 @@ export default function Cuentas({ navigation }) {
                 padding: 15,
               }}
             >
-              <View>
-                <Ionicons
-                  name="menu"
-                  size={30}
-                  color={Colors.third}
-                  onPress={openSideMenu}
-                />
-              </View>
-              <View>
+              <Pressable onPress={openSideMenu}>
+                <Ionicons name="menu" size={30} color={Colors.third} />
+              </Pressable>
+              <Pressable>
                 <Feather name="bell" size={30} color={Colors.third} />
-              </View>
+              </Pressable>
             </View>
             {/*Greetings View*/}
             <View
@@ -75,7 +96,7 @@ export default function Cuentas({ navigation }) {
                 </View>
                 <View>
                   <Text style={[styles.text, { color: Colors.third }]}>
-                    Adawel
+                    {name}
                   </Text>
                 </View>
               </View>
@@ -124,9 +145,9 @@ export default function Cuentas({ navigation }) {
                       type_acc={"Certificado Financiero"}
                     />
                     <All_products
-                      icon={"coins"}
+                      icon={"money-bill"}
                       type={"Prestamos"}
-                      type_acc={"Certificado Financiero"}
+                      type_acc={"Prestamo Normal"}
                       special_acc={"Existe"}
                     />
                   </View>
@@ -150,9 +171,9 @@ export default function Cuentas({ navigation }) {
               case "Prestamos":
                 return (
                   <All_products
-                    icon={"coins"}
+                    icon={"money-bill"}
                     type={"Prestamos"}
-                    type_acc={"Certificado Financiero"}
+                    type_acc={"Prestamo Normal"}
                     special_acc={"Existe"}
                   />
                 );
@@ -160,6 +181,38 @@ export default function Cuentas({ navigation }) {
                 return null;
             }
           })()}
+        </View>
+      </View>
+      {/*Footer View*/}
+      <View
+        style={{
+          position: "absolute",
+          bottom: 0,
+          paddingVertical: "4%",
+        }}
+      >
+        <View
+          style={{
+            flexDirection: "row",
+          }}
+        >
+          <Pressable
+            style={[
+              styles.footer_views,
+              { marginRight: "25%", marginLeft: "5%" },
+            ]}
+          >
+            <FontAwesome name="paper-plane-o" size={24} color={Colors.third} />
+            <Text>Solicitud</Text>
+          </Pressable>
+          <Pressable style={[styles.footer_views, { marginRight: "22%" }]}>
+            <Foundation name="telephone" size={24} color={Colors.third} />
+            <Text>Contacto</Text>
+          </Pressable>
+          <Pressable style={[styles.footer_views]}>
+            <FontAwesome name="whatsapp" size={24} color={Colors.third} />
+            <Text>Whatsapp</Text>
+          </Pressable>
         </View>
       </View>
     </View>
@@ -178,5 +231,14 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  footer: {
+    width: "100%",
+    height: "%",
+    position: "relative",
+  },
+  footer_views: {
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

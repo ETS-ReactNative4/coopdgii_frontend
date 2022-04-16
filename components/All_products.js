@@ -28,13 +28,12 @@ export default function All_products({ icon, type, type_acc, special_acc }) {
   };
 
   return (
-    <View>
+    <View style={{ marginRight: "2%", marginLeft: "2%" }}>
       <View
         style={{
           flexDirection: "row",
           alignItems: "flex-start",
           marginTop: "4%",
-          marginLeft: "4%",
         }}
       >
         <View style={{ marginRight: "2%" }}>

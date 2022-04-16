@@ -17,9 +17,25 @@ import Logo from "../assets/images/logo_home.png";
 import { Texts_var } from "../styles/styled";
 import { Colors } from "../styles/styled";
 import { AntDesign } from "@expo/vector-icons";
+import {
+  NavigationHelpersContext,
+  useNavigation,
+} from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function homeItems(props) {
   const { height } = useWindowDimensions();
+  const navigation = useNavigation();
+
+  const removeItem = async () => {
+    try {
+      await AsyncStorage.removeItem("token");
+      navigation.replace("Sign_In");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -48,7 +64,7 @@ export default function homeItems(props) {
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
       {/*lOGOUT BUTTON*/}
-      <Pressable style={[styles.footer_view]}>
+      <Pressable style={[styles.footer_view]} onPress={removeItem}>
         <View style={{ marginRight: "2%" }}>
           <Text
             style={{ color: Colors.third, fontSize: 16, fontWeight: "bold" }}

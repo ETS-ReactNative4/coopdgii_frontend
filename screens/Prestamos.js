@@ -1,36 +1,73 @@
 import { View, Text, StyleSheet, StatusBar } from "react-native";
 import React from "react";
-import { FontAwesome5 } from "@expo/vector-icons";
 import { Colors } from "../styles/styled";
+import { Ionicons } from "@expo/vector-icons";
+import { Texts_var } from "../styles/styled";
+import All_products from "../components/All_products";
 
 export default function Prestamos() {
   return (
-    <View>
+    <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
+      <View style={styles.header}>
+        <Text
+          style={{
+            fontWeight: "bold",
+            color: Texts_var.ratesfont,
+            fontSize: 16,
+          }}
+        >
+          Prestamos
+        </Text>
+      </View>
       <View
         style={{
+          marginTop: "2%",
           flexDirection: "row",
-          alignItems: "flex-start",
-          marginTop: "4%",
-          marginLeft: "4%",
         }}
       >
-        <View style={{ marginRight: "2%" }}>
-          <FontAwesome5 name="coins" size={24} color={Colors.third} />
+        <View style={{ marginLeft: "5%", marginRight: "2%" }}>
+          <Text style={styles.text_greetings}>Hola</Text>
         </View>
-        <View style={{ marginTop: "1%" }}>
-          <Text style={[styles.text, { color: Colors.third }]}>Prestamos</Text>
+        <View>
+          <Text
+            style={[styles.text_greetings, { color: Texts_var.ratesDark_blue }]}
+          >
+            Adawel
+          </Text>
         </View>
       </View>
-      <View style={styles.piggy_container}>
-        <View style={{ marginLeft: "1%" }}>
-          <Text style={[styles.text, { color: Colors.third }]}>
-            Certificado Financiero
-          </Text>
-          <Text>10000001515</Text>
-        </View>
-        <View style={{ marginRight: "3%" }}>
-          <Text>Balance Disponible</Text>
-          <Text style={[styles.text, { marginBottom: "2%" }]}>10000001515</Text>
+      {/*Loans views*/}
+      <View style={{ alignItems: "center" }}>
+        <View style={[styles.loans, { padding: 15 }]}>
+          {/*Your Account*/}
+          <View style={{ flexDirection: "row" }}>
+            <View>
+              <Ionicons name="people" size={40} color="black" />
+            </View>
+            <View>
+              <Text
+                style={[
+                  styles.text_greetings,
+                  { fontSize: 30, marginLeft: "2%" },
+                ]}
+              >
+                Tu cuenta
+              </Text>
+            </View>
+          </View>
+          {/*Loans*/}
+          <All_products
+            icon={"money-bill"}
+            type={"Prestamos Normales"}
+            type_acc={"Prestamo Normal"}
+            special_acc={"Existe"}
+          />
+          <All_products
+            icon={"piggy-bank"}
+            type={"Orden de Compra"}
+            type_acc={"Prestamo Normal"}
+            special_acc={"Existe"}
+          />
         </View>
       </View>
     </View>
@@ -40,13 +77,27 @@ export default function Prestamos() {
 const styles = StyleSheet.create({
   text: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 18,
+    color: Colors.third,
   },
-  piggy_container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: "2%",
-    marginLeft: "5%",
-    borderBottomWidth: 1,
+  header: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    height: "10%",
+    backgroundColor: Colors.third,
+    borderBottomWidth: 0.5,
+  },
+  text_greetings: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: Colors.third,
+  },
+  loans: {
+    width: "100%",
+    height: "100%",
+    borderWidth: 0.5,
+    borderRadius: 25,
+    marginTop: "5%",
   },
 });

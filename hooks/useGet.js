@@ -1,25 +1,30 @@
-import React, { useState, useEffect } from "react";
-import { Alert } from "react-native";
+import React, { useEffect, useState } from "react";
 
-function useGet(url, response) {
-  const [data, setData] = useState(response);
-
-  async function getData(url) {
-    try {
-      const res = await fetch(url);
-      const data = await res.json();
-      setData({
-        isLoading: false,
-        data,
-      });
-    } catch (error) {
-      Alert.alert("Error", error, [{ text: "Ok" }]);
-    }
-  }
+function useGet(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getData(url);
+    setLoading(true);
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      })
+      .catch((err) => {
+        setError(err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [url]);
 
-  return data;
+  return {
+    data,
+    loading,
+    error,
+  };
 }
+
+export default useGet;

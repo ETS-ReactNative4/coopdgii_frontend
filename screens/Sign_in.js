@@ -17,20 +17,45 @@ import Custom_button from "../components/Custom_button";
 import Btn_link from "../components/Btn_link";
 import { wifi_Status } from "../hooks/wifiStatus";
 import { Colors } from "../styles/styled";
+import PostData from "../helpers/postData";
+import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const initialUser = {
   ids: "",
   pass: "",
 };
 
-export default function Sign_in({ navigation }) {
+export default function Sign_in() {
   const { height } = useWindowDimensions();
   const [user, setUser] = useState(initialUser);
   const [connectionStatus, setConnectionStatus] = useState(false);
-  const [loginstate, setLoginState] = useState();
+  const navigation = useNavigation();
+  const [token, setToken] = useState();
+  const [name, setName] = useState();
+  const [loading, setLoading] = useState(true);
 
-  wifi_Status().then((res) => {
-    setConnectionStatus(res);
+  const post = () => {
+    PostData("https://coopdgii.com/coopvirtual/App/login", user)
+      .then((datos) => {
+        if (datos.success) {
+          Object.keys(datos).map(function (keys, index) {
+            setName(datos?.data.nombre);
+            setToken(datos?.data.token);
+          });
+        } else {
+          Alert.alert("Error", "Usuario o clave incorrecta", [{ text: "OK" }]);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    wifi_Status().then((res) => {
+      setConnectionStatus(res);
+    });
   });
 
   const handleChange = (name, text) => {
@@ -40,10 +65,6 @@ export default function Sign_in({ navigation }) {
     });
   };
 
-  const openDrawer = () => {
-    navigation.toggleDrawer();
-  };
-
   function verifyData() {
     if (!connectionStatus) {
       ToastAndroid.show("No hay conexion a internet", ToastAndroid.LONG);
@@ -51,10 +72,48 @@ export default function Sign_in({ navigation }) {
       Alert.alert("Advertencia", "Complete los campos y intentelo de nuevo", [
         { text: "Ok" },
       ]);
+    } else if (loading) {
+      Alert.alert("Espere", "Cargando datos", [{ text: "Ok" }]);
+      post();
     } else {
-      navigation.replace("Home");
+      getToken();
     }
   }
+  const getToken = async () => {
+    try {
+      var userData = {
+        Nombre: name,
+        Tokem: token,
+      };
+      await AsyncStorage.setItem("token", JSON.stringify(userData));
+      navigation.navigate({
+        name: "Home",
+        merge: true,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const openDrawer = () => {
+    navigation.toggleDrawer();
+  };
+
+  const tokenSet = async () => {
+    try {
+      await AsyncStorage.getItem("token").then((value) => {
+        if (value != null) {
+          navigation.replace("Home");
+        }
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    tokenSet();
+  }, []);
 
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>

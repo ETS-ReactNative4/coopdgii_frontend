@@ -5,10 +5,12 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import HomeItems from "./HomeItems";
 import Prestamos from "../screens/Prestamos";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import News from "../screens/News";
+import { Entypo } from "@expo/vector-icons";
 
 const Drawer = createDrawerNavigator();
 
-export default function HomeDrawer() {
+export default function HomeDrawer({ navigation }) {
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -35,6 +37,15 @@ export default function HomeDrawer() {
         options={{
           drawerIcon: ({ color }) => (
             <MaterialCommunityIcons name="sack" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Noticias"
+        component={News}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Entypo name="news" size={24} color={color} />
           ),
         }}
       />
