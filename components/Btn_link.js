@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginVertical: 10,
     alignItems: "center",
-    borderRadius: 5,
+    borderRadius: 5
   },
   text_link: {
     color: Texts_var.ratesDark_blue,

@@ -6,6 +6,7 @@ import {
   Keyboard,
   Alert,
   ToastAndroid,
+  Dimensions
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { styles } from "../styles/login_page";
@@ -26,8 +27,10 @@ const initialUser = {
   pass: "",
 };
 
-export default function Sign_in() {
-  const { height } = useWindowDimensions();
+export default function Sign_in({ navigation }) {
+  const { height, width } = Dimensions.get("screen");
+  
+
   const [user, setUser] = useState(initialUser);
   const [connectionStatus, setConnectionStatus] = useState(false);
   const navigation = useNavigation();
@@ -150,11 +153,14 @@ export default function Sign_in() {
           onPress={() => console.log("Pressed")}
           text={"¿Tiene Problemas para iniciar sesion?"}
         />
+        <View style={{ height:height * 0.35, position:"absolute", bottom:0,width:width}}>
+          
         <Image
           source={Women}
-          style={[styles.footer_image, { height: height * 0.4 }]}
-          resizeMode="contain"
+          style={[styles.footer_image, { height:"100%", maxWidth:"100%" }]}
+          
         />
+        </View>
       </View>
     </TouchableWithoutFeedback>
   );

@@ -1,157 +1,205 @@
-import { View, Text, StyleSheet, StatusBar } from "react-native";
-import React from "react";
-import { Texts_var, Colors } from "../styles/styled";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  TextInput,
+  Pressable,
+} from "react-native";
+import { Colors } from "../styles/styled";
 import btnDrawerStyle from "../styles/btnDrawerStyle";
 import { Entypo } from "@expo/vector-icons";
 import Btn_icon from "../components/Btn_icon";
+import { style as DivisasStyle } from "../styles/Divisas_pages";
+import RD from "../assets/images/RD.jpg";
+import usa from "../assets/images/usa.png";
+import eu from "../assets/images/eu.jpg";
+import japon from "../assets/images/japon.png";
+import mex from "../assets/images/mex.png";
+import MoneyConvert from "../helpers/MoneyConvert";
 
-export default function Divisas({navigation}) {
+const Divisas = ({ navigation }) => {
+  const [coins, setCoins] = useState();
+  const [coin, setCoin] = useState(coinsList[0]);
 
   const openDrawer = () => {
     navigation.toggleDrawer();
   };
 
+  const handleChange = (attr, value) => {
+    setCoin({ ...coin, [attr]: parseInt(value || 0) });
+  };
+
+  const filterMoney = () => {
+    const currentCoinList = coinsList.filter(
+      (item) => item.countryName !== coin.countryName
+    );
+
+    return currentCoinList;
+  };
+
+  const updateMoneys = (currectCoinList, monto, convert) => {
+    return currectCoinList.map((item) => {
+      let newMonto = {
+        ...item,
+        ["monto"]: MoneyConvert(monto, convert, item.simbol),
+      };
+      return newMonto;
+    });
+  };
+
+  useEffect(() => {
+    let currentCoinList = filterMoney();
+    const { monto, convert } = coin;
+    if (monto) {
+      let newMoneys = updateMoneys(currentCoinList, monto, convert);
+      setCoins(newMoneys);
+    } else {
+      setCoins(currentCoinList);
+    }
+  }, [coin]);
+
   return (
-    <View style={styles.rates_box}>
+    <View style={DivisasStyle.screen}>
       <Btn_icon
-        icon={<Entypo name="menu" size={24} color={Colors.white} />}
+        icon={<Entypo name="menu" size={24} color={"black"} />}
         onPress={openDrawer}
         styleButton={btnDrawerStyle.btn}
       />
-      <View
-        style={{
-          height: "8%",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: Colors.third,
-          borderBottomColor: Colors.black,
-          borderBottomWidth: 2,
-        }}
-      >
-        <Text
-          style={{
-            color: Texts_var.ratesfont,
-            fontWeight: "bold",
-            fontSize: 16,
-          }}
-        >
-          Tasas de Cambio
-        </Text>
-      </View>
-      <View style={styles.rates_us_box}>
-        <View style={{ marginLeft: "3%", marginRight: "50%" }}>
-          <Text
-            style={{
-              color: Texts_var.ratesAque,
-              fontSize: 16,
-              marginBottom: "4%",
-            }}
-          >
-            Dólar
-          </Text>
-          <Text
-            style={{
-              color: Texts_var.ratesDark_blue,
-              fontSize: 15,
-              marginTop: 10,
-            }}
-          >
-            USD
-          </Text>
+      <View style={DivisasStyle.screen_header}>
+        <View style={[DivisasStyle.header, DivisasStyle.header_money]}>
+          <Image source={coin.flag} style={DivisasStyle.img} />
+          <View>
+            <Text style={DivisasStyle.money_text}>{coin.countryName}</Text>
+            <Text style={DivisasStyle.money_text}>{coin.coinName}</Text>
+          </View>
         </View>
-        <View style={{ marginRight: "5%" }}>
-          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
-            Compra
-          </Text>
-          <Text
-            style={{
-              color: Texts_var.ratesDark_blue,
-              fontSize: 18,
-              marginTop: 10,
-            }}
-          >
-            54.40
-          </Text>
-        </View>
-        <View>
-          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
-            Venta
-          </Text>
-          <Text
-            style={{
-              color: Texts_var.ratesDark_blue,
-              fontSize: 18,
-              marginTop: 10,
-            }}
-          >
-            55.50
-          </Text>
+
+        <View style={[DivisasStyle.header]}>
+          <TextInput
+            value={coin.monto ? coin.monto.toString() : ""}
+            placeholderTextColor={Colors.white}
+            placeholder="$0"
+            onChangeText={(text) => handleChange("monto", text)}
+            style={DivisasStyle.money_big_text}
+            keyboardType="numeric"
+          />
         </View>
       </View>
-      {/**/}
-      <View style={[styles.rates_us_box, { marginTop: "3%" }]}>
-        <View style={{ marginLeft: "3%", marginRight: "50%" }}>
-          <Text
-            style={{
-              color: Texts_var.ratesAque,
-              fontSize: 16,
-              marginBottom: "4%",
-            }}
-          >
-            Euro
-          </Text>
-          <Text
-            style={{
-              color: Texts_var.ratesDark_blue,
-              fontSize: 15,
-              marginTop: 10,
-            }}
-          >
-            EUR
-          </Text>
-        </View>
-        <View style={{ marginRight: "5%" }}>
-          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
-            Compra
-          </Text>
-          <Text
-            style={{
-              color: Texts_var.ratesDark_blue,
-              fontSize: 18,
-              marginTop: 10,
-            }}
-          >
-            59.00
-          </Text>
-        </View>
-        <View>
-          <Text style={{ color: Texts_var.ratesGray, fontSize: 17 }}>
-            Venta
-          </Text>
-          <Text
-            style={{
-              color: Texts_var.ratesDark_blue,
-              fontSize: 18,
-              marginTop: 10,
-            }}
-          >
-            63.00
-          </Text>
+
+      <View style={DivisasStyle.screen_body}>
+        <View style={DivisasStyle.body_list}>
+          <FlatList
+            data={coins}
+            renderItem={({ item, index }) => (
+              <Pressable
+                onPress={() => setCoin(item)}
+                style={[
+                  DivisasStyle.body_item,
+                  {
+                    backgroundColor: index % 2 === 0 ? "#EFFDEF" : "#F8FFF8",
+                  },
+                ]}
+              >
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Image
+                    source={item?.flag}
+                    style={[DivisasStyle?.img, { alignSelf: "center" }]}
+                  ></Image>
+                  <View>
+                    <Text style={[DivisasStyle.money_text, { color: "black" }]}>
+                      {item?.countryName}
+                    </Text>
+                    <Text style={[DivisasStyle.money_text, { color: "black" }]}>
+                      {item?.coinName}
+                    </Text>
+                  </View>
+                </View>
+                <Text style={DivisasStyle.money_big_total}>
+                  {!item?.monto ? "0" : item?.monto}
+                </Text>
+              </Pressable>
+            )}
+            keyExtractor={(item, idex) => `${item?.coinName}_${idex}`}
+          />
         </View>
       </View>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  rates_box: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-    backgroundColor: Colors.fourth,
+const coinsList = [
+  {
+    flag: RD,
+    countryName: "RD",
+    coinName: "rd peso",
+    monto: "",
+    simbol: "rd",
+    convert: {
+      usa: 0.018,
+      eu: 0.017,
+      mex: 0.36,
+      japon: 0.44,
+    },
   },
-  rates_us_box: {
-    flexDirection: "row",
-    backgroundColor: Texts_var.ratesfont,
-    paddingVertical: 40,
+  {
+    flag: usa,
+    countryName: "USA",
+    coinName: "US Dolar",
+    monto: "",
+    simbol: "usa",
+    convert: {
+      rd: 55.05,
+      eu: 0.99,
+      mex: 0.36,
+      japon: 2.28,
+    },
   },
-});
+  {
+    flag: mex,
+    countryName: "MX",
+    coinName: "MX peso",
+    monto: "",
+    simbol: "mex",
+    convert: {
+      rd: 2.76,
+      usa: 0.05,
+      eu: 0.046,
+      japon: 6.34,
+    },
+  },
+  {
+    flag: eu,
+    countryName: "EU",
+    coinName: "EU euro",
+    monto: "",
+    simbol: "eu",
+    convert: {
+      rd: 59.52,
+      usa: 1.08,
+      mex: 21.6,
+      japon: 136.71,
+    },
+  },
+  {
+    flag: japon,
+    countryName: "JP",
+    coinName: "JP yen",
+    monto: "",
+    simbol: "japon",
+    convert: {
+      rd: 0.44,
+      usa: 0.0079,
+      mex: 0.16,
+      eu: 0.0073,
+    },
+  },
+];
+
+export default Divisas;
