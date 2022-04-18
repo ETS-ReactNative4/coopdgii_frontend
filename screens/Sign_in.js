@@ -37,20 +37,20 @@ export default function Sign_in() {
   const [loading, setLoading] = useState(true);
 
   const post = () => {
-    PostData("https://coopdgii.com/coopvirtual/App/login", user)
-      .then((datos) => {
+    PostData("https://coopdgii.com/coopvirtual/App/login", user).then(
+      (datos) => {
         if (datos.success) {
           Object.keys(datos).map(function (keys, index) {
             setName(datos?.data.nombre);
             setToken(datos?.data.token);
+            setLoading(false);
           });
         } else {
           Alert.alert("Error", "Usuario o clave incorrecta", [{ text: "OK" }]);
+          setLoading(true);
         }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      }
+    );
   };
 
   useEffect(() => {
@@ -74,9 +74,9 @@ export default function Sign_in() {
         { text: "Ok" },
       ]);
     } else if (loading) {
-      Alert.alert("Espere", "Cargando datos", [{ text: "Ok" }]);
       post();
-    } else {
+      Alert.alert("Espere", "Cargando datos", [{ text: "Ok" }]);
+    } else if (!loading) {
       getToken();
     }
   }

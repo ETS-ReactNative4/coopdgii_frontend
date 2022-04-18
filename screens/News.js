@@ -58,7 +58,7 @@ export default function News() {
                   <Text style={styles.date}>
                     {moment(item.date).format("LLL")}
                   </Text>
-                  <Text style={styles.newsDescription}>{item.excerpt}</Text>
+                  <Text style={styles.newsDescription}>{item.content}</Text>
                 </View>
                 <Divider my={2} bg="#e0e0e0" />
               </View>

@@ -7,6 +7,7 @@ import Prestamos from "../screens/Prestamos";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import News from "../screens/News";
 import { Entypo } from "@expo/vector-icons";
+import Whatsapp from "../screens/Whatsapp";
 
 const Drawer = createDrawerNavigator();
 
@@ -46,6 +47,15 @@ export default function HomeDrawer({ navigation }) {
         options={{
           drawerIcon: ({ color }) => (
             <Entypo name="news" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Whatsapp"
+        component={Whatsapp}
+        options={{
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="whatsapp" size={24} color={color} />
           ),
         }}
       />

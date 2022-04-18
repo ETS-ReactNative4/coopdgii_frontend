@@ -19,7 +19,6 @@ import { Texts_var } from "../styles/styled";
 import moment from "moment";
 import { Picker } from "@react-native-picker/picker";
 import All_products from "../components/All_products";
-import PostData from "../helpers/postData";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Cuentas({ navigation }) {
@@ -46,6 +45,11 @@ export default function Cuentas({ navigation }) {
   const openSideMenu = () => {
     navigation.toggleDrawer();
   };
+
+  const goWhatsapp = () => {
+    navigation.navigate("Whatsapp");
+  };
+
   const [value, setValue] = useState("Mostrar todos mis productos");
   return (
     <View style={styles.container}>
@@ -209,7 +213,7 @@ export default function Cuentas({ navigation }) {
             <Foundation name="telephone" size={24} color={Colors.third} />
             <Text>Contacto</Text>
           </Pressable>
-          <Pressable style={[styles.footer_views]}>
+          <Pressable style={[styles.footer_views]} onPress={goWhatsapp}>
             <FontAwesome name="whatsapp" size={24} color={Colors.third} />
             <Text>Whatsapp</Text>
           </Pressable>

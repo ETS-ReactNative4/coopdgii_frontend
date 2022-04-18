@@ -1,11 +1,35 @@
-import { View, Text, StyleSheet, StatusBar } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  StatusBar,
+  FlatList,
+  ActivityIndicator,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { Colors } from "../styles/styled";
 import { Ionicons } from "@expo/vector-icons";
 import { Texts_var } from "../styles/styled";
-import All_products from "../components/All_products";
+import useToken from "../hooks/useToken";
+
+const token = {
+  token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
+};
 
 export default function Prestamos() {
+  const { datauser, loading } = useToken(
+    "https://coopdgii.com/coopvirtual/App/prestamos",
+    token
+  );
+
+  if (loading) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size={"large"} color={Colors.third} />
+      </View>
+    );
+  }
+
   return (
     <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
       <View style={styles.header}>
@@ -56,17 +80,22 @@ export default function Prestamos() {
             </View>
           </View>
           {/*Loans*/}
-          <All_products
-            icon={"money-bill"}
-            type={"Prestamos Normales"}
-            type_acc={"Prestamo Normal"}
-            special_acc={"Existe"}
-          />
-          <All_products
-            icon={"piggy-bank"}
-            type={"Orden de Compra"}
-            type_acc={"Prestamo Normal"}
-            special_acc={"Existe"}
+          <FlatList
+            data={datauser.data}
+            renderItem={({ item }) => (
+              <View style={[styles.header_loans]}>
+                <View>
+                  <Ionicons name="person-outline" size={75} color="black" />
+                </View>
+                <View>
+                  <Text style={styles.text_loans}>{item.descripcion}</Text>
+                  <Text>Monto Prestamo : {item.monto_prestamo}</Text>
+                  <Text>Balance Prestamo : {item.balance_prestamo}</Text>
+                  <Text>Fecha de vencimiento : {item.fecha_vencimiento}</Text>
+                </View>
+              </View>
+            )}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </View>
@@ -99,5 +128,15 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 25,
     marginTop: "5%",
+  },
+  header_loans: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    marginTop: "4%",
+  },
+  text_loans: {
+    fontWeight: "bold",
+    fontSize: 17,
+    color: Colors.third,
   },
 });
