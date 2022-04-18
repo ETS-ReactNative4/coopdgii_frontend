@@ -22,6 +22,7 @@ import MoneyConvert from "../helpers/MoneyConvert";
 const Divisas = ({ navigation }) => {
   const [coins, setCoins] = useState();
   const [coin, setCoin] = useState(coinsList[0]);
+
   const openDrawer = () => {
     navigation.toggleDrawer();
   };
@@ -30,17 +31,34 @@ const Divisas = ({ navigation }) => {
     setCoin({ ...coin, [attr]: parseInt(value || 0) });
   };
 
-  useEffect(() => {
-    setCoins(coinsList.filter((item) => item.countryName !== coin.countryName));
-  }, [coin]);
+  const filterMoney = () => {
+    const currentCoinList = coinsList.filter(
+      (item) => item.countryName !== coin.countryName
+    );
+
+    return currentCoinList;
+  };
+
+  const updateMoneys = (currectCoinList, monto, convert) => {
+    return currectCoinList.map((item) => {
+      let newMonto = {
+        ...item,
+        ["monto"]: MoneyConvert(monto, convert, item.simbol),
+      };
+      return newMonto;
+    });
+  };
 
   useEffect(() => {
-    const newCoins = coinsList.map(
-      (item) =>
-        (item.monto = MoneyConvert(coin.monto, coin.convert, item.simbol))
-    );
-    console.log(newCoins);
-  }, [coin.monto]);
+    let currentCoinList = filterMoney();
+    const { monto, convert } = coin;
+    if (monto) {
+      let newMoneys = updateMoneys(currentCoinList, monto, convert);
+      setCoins(newMoneys);
+    } else {
+      setCoins(currentCoinList);
+    }
+  }, [coin]);
 
   return (
     <View style={DivisasStyle.screen}>
@@ -66,7 +84,6 @@ const Divisas = ({ navigation }) => {
             onChangeText={(text) => handleChange("monto", text)}
             style={DivisasStyle.money_big_text}
             keyboardType="numeric"
-            onSubmitEditing={(e) => console.log("hola")}
           />
         </View>
       </View>
@@ -92,22 +109,24 @@ const Divisas = ({ navigation }) => {
                   }}
                 >
                   <Image
-                    source={item.flag}
-                    style={[DivisasStyle.img, { alignSelf: "center" }]}
+                    source={item?.flag}
+                    style={[DivisasStyle?.img, { alignSelf: "center" }]}
                   ></Image>
                   <View>
                     <Text style={[DivisasStyle.money_text, { color: "black" }]}>
-                      {item.countryName}
+                      {item?.countryName}
                     </Text>
                     <Text style={[DivisasStyle.money_text, { color: "black" }]}>
-                      {item.coinName}
+                      {item?.coinName}
                     </Text>
                   </View>
                 </View>
-                <Text style={DivisasStyle.money_big_total}>{item.monto}</Text>
+                <Text style={DivisasStyle.money_big_total}>
+                  {!item?.monto ? "0" : item?.monto}
+                </Text>
               </Pressable>
             )}
-            keyExtractor={(item, idex) => `${item.coinName}_${idex}`}
+            keyExtractor={(item, idex) => `${item?.coinName}_${idex}`}
           />
         </View>
       </View>
@@ -123,8 +142,8 @@ const coinsList = [
     monto: "",
     simbol: "rd",
     convert: {
-      usa: 56,
-      eu: 59.52,
+      usa: 0.018,
+      eu: 0.017,
       mex: 0.36,
       japon: 0.44,
     },
@@ -138,8 +157,8 @@ const coinsList = [
     convert: {
       rd: 55.05,
       eu: 0.99,
-      mex: 19.94,
-      japon: 126.44,
+      mex: 0.36,
+      japon: 2.28,
     },
   },
   {
