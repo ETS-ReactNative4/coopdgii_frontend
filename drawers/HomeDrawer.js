@@ -8,6 +8,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import News from "../screens/News";
 import { Entypo } from "@expo/vector-icons";
 import Whatsapp from "../screens/Whatsapp";
+import Certificado from "../screens/Certificado";
 
 const Drawer = createDrawerNavigator();
 
@@ -24,8 +25,17 @@ export default function HomeDrawer({ navigation }) {
       drawerContent={(props) => <HomeItems {...props} />}
     >
       <Drawer.Screen
-        name="Cuentas"
+        name="Home"
         component={Cuentas}
+        options={{
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="home" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Cuentas"
+        component={Certificado}
         options={{
           drawerIcon: ({ color }) => (
             <FontAwesome5 name="piggy-bank" size={24} color={color} />

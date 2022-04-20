@@ -1,0 +1,52 @@
+{
+    "data": [
+    {
+    "tipo":"AHORROS A LA VISTA",
+    "id": "N° 1401274",
+    "nombre":"JOHN DOE",
+    "monto": "RD: 999,9999,9999,999"
+    },
+    {
+    "tipo":"AHORROS A LA VISTA",
+    "id": "N° 456454",
+    "nombre": "JOHN DOE",
+    "monto": " RD: 999,9999,9999,999"
+    },
+    {
+    "tipo":"AHORROS A LA VISTA",
+    "id": " N° 156191",
+    "nombre": "JOHN DOE",
+    "monto":"RD: 999,9999,9999,999"
+    },
+    {
+    "tipo": "Certificado de Deposito",
+    "id": "N° 216548",
+    "nombre":"JOHN DOE",
+    "monto": "RD: 999,9999,9999,999"
+    },
+    {
+    "tipo": "Certificado de Deposito",
+    "id": "N° 8784854",
+    "nombre": "JOHN DOE",
+    "monto": " RD: 999,9999,9999,999"
+    },
+    {
+    "tipo": "Certificado de Deposito",
+    "id": "N° 465465498",
+    "nombre":"JOHN DOE",
+    "monto": "RD: 999,9999,9999,999"
+    },
+    {
+    "tipo": "Certificado de Deposito",
+    "id": "N° 45164147",
+    "nombre":"JOHN DOE",
+    "monto": "RD: 999,9999,9999,999"
+    },
+    {
+    "tipo": "Certificado de Deposito",
+    "id": "N° 85414841",
+    "nombre":"JOHN DOE",
+    "monto": "RD: 999,9999,9999,999"
+    }
+    ]
+}

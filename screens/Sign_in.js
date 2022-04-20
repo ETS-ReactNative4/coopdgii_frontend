@@ -75,9 +75,6 @@ export default function Sign_in() {
       ]);
     } else if (loading) {
       post();
-      Alert.alert("Espere", "Cargando datos", [{ text: "Ok" }]);
-    } else if (!loading) {
-      getToken();
     }
   }
   const getToken = async () => {
@@ -87,24 +84,21 @@ export default function Sign_in() {
         Tokem: token,
       };
       await AsyncStorage.setItem("token", JSON.stringify(userData));
-      navigation.navigate({
-        name: "Home",
-        merge: true,
-      });
+      navigation.replace("Home_Screen");
     } catch (e) {
       console.log(e);
     }
   };
 
-  const openDrawer = () => {
-    navigation.toggleDrawer();
-  };
+  useEffect(() => {
+    if (token) getToken();
+  }, [token]);
 
   const tokenSet = async () => {
     try {
       await AsyncStorage.getItem("token").then((value) => {
         if (value != null) {
-          navigation.replace("Home");
+          navigation.replace("Home_Screen");
         }
       });
     } catch (e) {
@@ -116,6 +110,9 @@ export default function Sign_in() {
     tokenSet();
   }, []);
 
+  const openDrawer = () => {
+    navigation.toggleDrawer();
+  };
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.root_container}>

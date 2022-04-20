@@ -9,6 +9,7 @@ import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import Contact from "../screens/Contact";
 import Location from "../screens/Location";
+
 const Drawer = createDrawerNavigator();
 
 export default function Login_drawer() {
