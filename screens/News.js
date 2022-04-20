@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
-  Dimensions,
-  StatusBar,
   ActivityIndicator,
   Modal,
   ImageBackground,
-} from "react-native";
-import {
-  NativeBaseProvider,
   FlatList,
-  Divider,
-  Image,
-  Spinner,
-} from "native-base";
+} from "react-native";
 import moment from "moment";
 import { styles } from "../styles/home_page";
 import useGet from "../hooks/useGet";
@@ -23,6 +15,7 @@ import useModal from "../hooks/useModal";
 import Card_modal from "../components/Card_modal";
 import News_pages from "../styles/News_page";
 import newsBackground from "../assets/newsBackground.jpg";
+import New_card from "../components/New_card";
 
 export default function News() {
   const { data, loading, error } = useGet(
@@ -35,7 +28,6 @@ export default function News() {
   useEffect(() => {
     if (loading) openLoadingModal();
     else {
-      console.log(data);
       closeLoadingModal();
     }
   }, [loading]);
@@ -49,11 +41,21 @@ export default function News() {
             style={News_pages.header_background}
           >
             <View>
-              <Text>COOPDGII NEWS</Text>
+              <Text style={News_pages.header_title}>COOPDGII NEWS</Text>
             </View>
           </ImageBackground>
         </View>
-        <View style={News_pages.body}></View>
+        <View style={News_pages.body}>
+          {!loading && (
+            <FlatList
+              data={data?.data}
+              keyExtractor={(item, index) => `${index}-${item.id}`}
+              renderItem={({ item }) => (
+                <New_card img={item.imagen} title={item.title} newObj={item} />
+              )}
+            />
+          )}
+        </View>
       </View>
 
       <Modal visible={isLoadingModalOpen} transparent={true}>
@@ -64,46 +66,5 @@ export default function News() {
         </View>
       </Modal>
     </>
-    // <NativeBaseProvider>
-    //   <View
-    //     style={{
-    //       height: Dimensions.get("window").height,
-    //       width: Dimensions.get("window").width,
-    //       marginTop: StatusBar.currentHeight,
-    //     }}
-    //   >
-    //     {data?.data.length > 1 ? (
-    //       <FlatList
-    //         data={data?.data}
-    //         renderItem={({ item }) => (
-    //           <View>
-    //             <View style={styles.newsContainer}>
-    //               <Image
-    //                 width={550}
-    //                 height={250}
-    //                 resizeMode={"cover"}
-    //                 source={{
-    //                   uri: item.imagen,
-    //                 }}
-    //                 alt="Alternate Text"
-    //               />
-    //               <Text style={styles.title}>{item.title}</Text>
-    //               <Text style={styles.date}>
-    //                 {moment(item.date).format("LLL")}
-    //               </Text>
-    //               <Text style={styles.newsDescription}>{item.content}</Text>
-    //             </View>
-    //             <Divider my={2} bg="#e0e0e0" />
-    //           </View>
-    //         )}
-    //         keyExtractor={(item, index) => index.toString()}
-    //       />
-    //     ) : (
-    //       <View style={styles.spinner}>
-    //         <Spinner color="danger.400" />
-    //       </View>
-    //     )}
-    //   </View>
-    // </NativeBaseProvider>
   );
 }
