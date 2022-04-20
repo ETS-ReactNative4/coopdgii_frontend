@@ -12,6 +12,7 @@ const Colors = {
   white: "#FFFBE7",
   bg_divisas: "rgb(107, 203, 119)",
   dark_Blue: "#00008B",
+  bg_container_modal: "rgba(68, 68, 68,0.5)",
 };
 
 const Texts_var = {

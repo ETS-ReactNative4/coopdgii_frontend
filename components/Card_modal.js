@@ -7,9 +7,9 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
-import { Colors,Texts_var } from "../styles/styled";
+import { Colors, Texts_var } from "../styles/styled";
 
-const Card_modal = ({ closeModal, children, title }) => {
+const Card_modal = ({ closeModal, children, title, styleBody }) => {
   return (
     <TouchableOpacity style={style.Container} onPress={closeModal}>
       <View
@@ -20,7 +20,7 @@ const Card_modal = ({ closeModal, children, title }) => {
         <View style={style.ModalHeader}>
           <Text style={style.title}>{title}</Text>
         </View>
-        <View>{children}</View>
+        <View style={styleBody}>{children}</View>
       </View>
     </TouchableOpacity>
   );
@@ -28,7 +28,7 @@ const Card_modal = ({ closeModal, children, title }) => {
 
 const style = StyleSheet.create({
   Container: {
-    backgroundColor: "rgba(68, 68, 68,0.5)",
+    backgroundColor: Colors.bg_container_modal,
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
