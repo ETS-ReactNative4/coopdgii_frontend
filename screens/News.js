@@ -7,17 +7,14 @@ import {
   ImageBackground,
   FlatList,
 } from "react-native";
-import moment from "moment";
-import { styles } from "../styles/home_page";
 import useGet from "../hooks/useGet";
 import { Colors } from "../styles/styled";
 import useModal from "../hooks/useModal";
-import Card_modal from "../components/Card_modal";
 import News_pages from "../styles/News_page";
 import newsBackground from "../assets/newsBackground.jpg";
 import New_card from "../components/New_card";
 
-export default function News() {
+export default function News({ navigation }) {
   const { data, loading, error } = useGet(
     "https://coopdgii.com/coopvirtual/App/noticias"
   );
@@ -51,7 +48,11 @@ export default function News() {
               data={data?.data}
               keyExtractor={(item, index) => `${index}-${item.id}`}
               renderItem={({ item }) => (
-                <New_card img={item.imagen} title={item.title} newObj={item} />
+                <New_card
+                  img={item.imagen}
+                  title={item.title}
+                  onNextScreen={() => navigation.navigate("New", { item })}
+                />
               )}
             />
           )}
