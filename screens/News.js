@@ -13,6 +13,7 @@ import useModal from "../hooks/useModal";
 import News_pages from "../styles/News_page";
 import newsBackground from "../assets/newsBackground.jpg";
 import New_card from "../components/New_card";
+import { Entypo } from "@expo/vector-icons";
 
 export default function News({ navigation }) {
   const { data, loading, error } = useGet(
@@ -29,9 +30,21 @@ export default function News({ navigation }) {
     }
   }, [loading]);
 
+  const openDrawer = () => {
+    navigation.toggleDrawer();
+  };
+
   return (
     <>
       <View style={News_pages.page}>
+        <View style={{ position: "absolute", zIndex: 20, top: 10, left: 10 }}>
+          <Entypo
+            name="menu"
+            size={26}
+            color={Colors.third}
+            onPress={openDrawer}
+          />
+        </View>
         <View style={News_pages.header}>
           <ImageBackground
             source={newsBackground}

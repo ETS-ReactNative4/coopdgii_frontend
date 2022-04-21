@@ -10,23 +10,7 @@ const News_pages = StyleSheet.create({
   },
   header: {
     height: height * 0.15,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 5,
-      height: 3,
-    },
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-
-    elevation: 2,
-    shadowOpacity: 5,
-    shadowRadius: 4.65,
-    elevation: 2,
+    zIndex: 2,
   },
   body: {
     alignItems: "center",
@@ -37,6 +21,7 @@ const News_pages = StyleSheet.create({
     width: "100%",
     height: "100%",
     justifyContent: "center",
+    zIndex: 2,
   },
 
   header_title: {
