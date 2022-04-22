@@ -3,7 +3,6 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  ActivityIndicator,
   Pressable,
   ScrollView,
 } from "react-native";
@@ -14,7 +13,7 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
-
+import LoandingModal from "../components/LoandingModal";
 const token = {
   token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
 };
@@ -27,14 +26,6 @@ const SolicitudTipo = ({ navigation }) => {
   const openDrawer = () => {
     navigation.toggleDrawer();
   };
-
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size={"large"} color={Colors.third} />
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>
@@ -86,16 +77,14 @@ const SolicitudTipo = ({ navigation }) => {
             return index.campos_data.map(function (index) {
               return (
                 <View
+                  key={(index, item) => item.toString()}
                   style={{
                     alignItems: "center",
                     marginBottom: 10,
                     marginTop: 5,
                   }}
                 >
-                  <View
-                    style={styles.list_view}
-                    key={(index, item) => item.toString()}
-                  >
+                  <View style={styles.list_view}>
                     <View style={styles.icon_view}>
                       <MaterialCommunityIcons
                         name="paperclip"
@@ -130,6 +119,7 @@ const SolicitudTipo = ({ navigation }) => {
             });
           })}
       </ScrollView>
+      <LoandingModal isLoadingModalOpen={loading} />
     </View>
   );
 };

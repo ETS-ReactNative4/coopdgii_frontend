@@ -3,7 +3,6 @@ import {
   Text,
   StyleSheet,
   StatusBar,
-  ActivityIndicator,
   Pressable,
   FlatList,
 } from "react-native";
@@ -14,6 +13,7 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import LoandingModal from "../components/LoandingModal";
 
 const token = {
   token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
@@ -27,14 +27,6 @@ const Solicitud = ({ navigation }) => {
   const openDrawer = () => {
     navigation.toggleDrawer();
   };
-
-  if (loading) {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size={"large"} color={Colors.third} />
-      </View>
-    );
-  }
 
   return (
     <View style={styles.container}>
@@ -118,6 +110,7 @@ const Solicitud = ({ navigation }) => {
           keyExtractor={(item, index) => index.toString()}
         />
       )}
+      <LoandingModal isLoadingModalOpen={loading} />
     </View>
   );
 };
