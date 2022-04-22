@@ -1,12 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  Modal,
-  ImageBackground,
-  FlatList,
-} from "react-native";
+import { View, Text, ImageBackground, FlatList } from "react-native";
 import useGet from "../hooks/useGet";
 import { Colors } from "../styles/styled";
 import useModal from "../hooks/useModal";
@@ -14,6 +7,7 @@ import News_pages from "../styles/News_page";
 import newsBackground from "../assets/newsBackground.jpg";
 import New_card from "../components/New_card";
 import { Entypo } from "@expo/vector-icons";
+import LoandingModal from "./LoandingModal";
 
 export default function News({ navigation }) {
   const { data, loading, error } = useGet(
@@ -72,13 +66,7 @@ export default function News({ navigation }) {
         </View>
       </View>
 
-      <Modal visible={isLoadingModalOpen} transparent={true}>
-        <View style={News_pages.container_modal}>
-          <View style={News_pages.spiner_container}>
-            <ActivityIndicator size={"large"} color={Colors.third} />
-          </View>
-        </View>
-      </Modal>
+      <LoandingModal isLoadingModalOpen={isLoadingModalOpen} />
     </>
   );
 }
