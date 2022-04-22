@@ -7,10 +7,10 @@ import Prestamos from "../screens/Prestamos";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import News from "../screens/News";
 import { Entypo } from "@expo/vector-icons";
-import Whatsapp from "../screens/Whatsapp";
 import Certificado from "../screens/Certificado";
 import Descuentos from "../screens/Descuentos";
 import TabNavigator from "../tabs/TabNavigator";
+import Contact from "../screens/Contact";
 
 const Drawer = createDrawerNavigator();
 
@@ -77,6 +77,15 @@ export default function HomeDrawer({ navigation }) {
         options={{
           drawerIcon: ({ color }) => (
             <FontAwesome5 name="paperclip" size={20} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Ayuda"
+        component={Contact}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Entypo name="help" size={24} color={color} />
           ),
         }}
       />

@@ -59,6 +59,10 @@ export default function Cuentas({ navigation }) {
     navigation.navigate("Solicitudes");
   };
 
+  const goContact = () => {
+    navigation.navigate("Ayuda");
+  };
+
   const [value, setValue] = useState("Mostrar todos mis productos");
   return (
     <View style={styles.container}>
@@ -467,7 +471,10 @@ export default function Cuentas({ navigation }) {
             <FontAwesome name="paper-plane-o" size={24} color={Colors.third} />
             <Text>Solicitud</Text>
           </Pressable>
-          <Pressable style={[styles.footer_views, { marginRight: "22%" }]}>
+          <Pressable
+            style={[styles.footer_views, { marginRight: "22%" }]}
+            onPress={goContact}
+          >
             <Foundation name="telephone" size={24} color={Colors.third} />
             <Text>Contacto</Text>
           </Pressable>
