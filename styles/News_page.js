@@ -15,7 +15,7 @@ const News_pages = StyleSheet.create({
   body: {
     alignItems: "center",
     marginTop: 30,
-    paddingBottom: 120,
+    paddingBottom: 200,
   },
   header_background: {
     width: "100%",
