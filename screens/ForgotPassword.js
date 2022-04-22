@@ -48,6 +48,7 @@ const ForgotPassword = ({ navigation }) => {
           color={Colors.white}
           styled={ForgotPassword_styled.button}
           size={20}
+          onPress={() => navigation.navigate("ResetPassword")}
         />
       </View>
     </View>
