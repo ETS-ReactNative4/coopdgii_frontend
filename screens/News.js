@@ -7,7 +7,7 @@ import News_pages from "../styles/News_page";
 import newsBackground from "../assets/newsBackground.jpg";
 import New_card from "../components/New_card";
 import { Entypo } from "@expo/vector-icons";
-import LoandingModal from "./LoandingModal";
+import LoandingModal from "../components/LoandingModal";
 
 export default function News({ navigation }) {
   const { data, loading, error } = useGet(

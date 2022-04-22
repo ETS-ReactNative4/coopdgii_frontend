@@ -21,7 +21,7 @@ import PostData from "../helpers/postData";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useModal from "../hooks/useModal";
-import LoandingModal from "./LoandingModal";
+import LoandingModal from "../components/LoandingModal";
 
 const initialUser = {
   ids: "",
