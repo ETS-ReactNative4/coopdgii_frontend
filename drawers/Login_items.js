@@ -19,6 +19,7 @@ import Card_modal from "../components/Card_modal";
 import { Links } from "../helpers/Links";
 import Item from "../components/Item";
 import contact from "../styles/contact_page";
+import Modal_styled from "../styles/Modal_styled";
 
 const Login_items = (props) => {
   const [isHelpModalOpen, openHelpModal, closeHelpModal] = useModal();
@@ -56,10 +57,10 @@ const Login_items = (props) => {
                 icon={item.icon}
                 title={item.title}
                 sudtitle={item.sudtitle}
-                ItemStyled={contact.item_container}
-                TitleStyled={contact.Item_title}
+                ItemStyled={Modal_styled.container}
+                TitleStyled={Modal_styled.title}
                 sudStyle={contact.Item_sudtitle}
-                ItemTextStyled={contact.Item_TextContainer}
+                ItemTextStyled={Modal_styled.textContainer}
               />
             )}
             keyExtractor={(item) => item.idx}

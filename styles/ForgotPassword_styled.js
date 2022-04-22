@@ -11,7 +11,7 @@ const ForgotPassword_styled = StyleSheet.create({
     backgroundColor: Colors.white,
   },
   header: {
-    height: height * 0.3,
+    height: height * 0.4,
     width: "100%",
   },
   header_img: {

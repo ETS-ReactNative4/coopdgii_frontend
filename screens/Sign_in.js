@@ -6,6 +6,8 @@ import {
   Alert,
   ToastAndroid,
   Dimensions,
+  Modal,
+  FlatList,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { styles } from "../styles/login_page";
@@ -22,6 +24,10 @@ import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useModal from "../hooks/useModal";
 import LoandingModal from "../components/LoandingModal";
+import Card_modal from "../components/Card_modal";
+import Modal_Style from "../styles/Modal_styled";
+import Item from "../components/Item";
+import { Links } from "../helpers/Links";
 
 const initialUser = {
   ids: "",
@@ -37,6 +43,7 @@ export default function Sign_in() {
   const [token, setToken] = useState();
   const [name, setName] = useState();
   const [loading, setLoading] = useState(true);
+  const [isHelpModalOpen, openHelpModal, closeHelpModal] = useModal();
 
   const post = () => {
     PostData("https://coopdgii.com/coopvirtual/App/login", user).then(
@@ -150,7 +157,7 @@ export default function Sign_in() {
           />
           <Custom_button onPress={verifyData} />
           <Btn_link
-            onPress={() => console.log("Pressed")}
+            onPress={() => openHelpModal()}
             text={"¿Tiene Problemas para iniciar sesion?"}
           />
           <View
@@ -171,6 +178,24 @@ export default function Sign_in() {
           </View>
         </View>
       </TouchableWithoutFeedback>
+      <Modal animationType="slide" visible={isHelpModalOpen} transparent={true}>
+        <Card_modal closeModal={closeHelpModal} title="Call us">
+          <FlatList
+            data={Links}
+            renderItem={({ item }) => (
+              <Item
+                icon={item.icon}
+                title={item.title}
+                sudtitle={item.sudtitle}
+                ItemStyled={Modal_Style.container}
+                TitleStyled={Modal_Style.title}
+                ItemTextStyled={Modal_Style.textContainer}
+              />
+            )}
+            keyExtractor={(item) => item.idx}
+          />
+        </Card_modal>
+      </Modal>
       <LoandingModal isLoadingModalOpen={isLoadinModalOpen} />
     </>
   );
