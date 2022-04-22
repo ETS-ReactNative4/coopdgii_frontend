@@ -22,7 +22,10 @@ import moment from "moment";
 import { Picker } from "@react-native-picker/picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import useToken from "../hooks/useToken";
-
+import useModal from "../hooks/useModal";
+import Card_modal from "../components/Card_modal";
+import Whatsapp from "./Whatsapp";
+import { Entypo } from "@expo/vector-icons";
 const token = {
   token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
 };
@@ -32,6 +35,7 @@ export default function Cuentas({ navigation }) {
     "https://coopdgii.com/coopvirtual/App/resumen",
     token
   );
+  const [isNumberModalOpen, openNumberModal, closeNumberModal] = useModal();
   useEffect(() => {
     getToken();
   });
@@ -478,12 +482,25 @@ export default function Cuentas({ navigation }) {
             <Foundation name="telephone" size={24} color={Colors.third} />
             <Text>Contacto</Text>
           </Pressable>
-          <Pressable style={[styles.footer_views]}>
+          <Pressable style={[styles.footer_views]} onPress={openNumberModal}>
             <FontAwesome name="whatsapp" size={24} color={Colors.third} />
             <Text>Whatsapp</Text>
           </Pressable>
         </View>
       </View>
+      <Modal visible={isNumberModalOpen} transparent={true}>
+        <Card_modal
+          closeModal={closeNumberModal}
+          styleBody={styles.containerModal}
+          title="Call us"
+        >
+          <View>
+            <Text style={styles.text}>Contactanos con los numeros</Text>
+            <Text style={styles.text}>829-649-3938</Text>
+            <Text style={styles.text}>829-828-1545</Text>
+          </View>
+        </Card_modal>
+      </Modal>
     </View>
   );
 }
@@ -524,5 +541,17 @@ const styles = StyleSheet.create({
     color: Colors.third,
     fontWeight: "bold",
     fontSize: 13,
+  },
+  text: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  containerModal: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Colors.third,
+    position: "relative",
   },
 });
