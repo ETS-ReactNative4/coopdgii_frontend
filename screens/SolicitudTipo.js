@@ -83,7 +83,7 @@ const SolicitudTipo = ({ navigation }) => {
       <ScrollView>
         {datauser &&
           datauser.data.map(function (index) {
-            return index.campos_data.map(function (index) {
+            return index.campos_data.map(function (index, element) {
               return (
                 <View
                   style={{
@@ -91,11 +91,9 @@ const SolicitudTipo = ({ navigation }) => {
                     marginBottom: 10,
                     marginTop: 5,
                   }}
+                  key={element}
                 >
-                  <View
-                    style={styles.list_view}
-                    key={(index, item) => item.toString()}
-                  >
+                  <View style={styles.list_view}>
                     <View style={styles.icon_view}>
                       <MaterialCommunityIcons
                         name="paperclip"
