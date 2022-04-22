@@ -90,23 +90,31 @@ export default function Prestamos({ navigation }) {
         </View>
         <View style={[styles.loans, { padding: 15 }]}>
           {/*Your Account*/}
-          <FlatList
-            data={datauser.data}
-            renderItem={({ item }) => (
-              <View style={[styles.header_loans]}>
-                <View style={{ height: "100%", backgroundColor: Colors.third }}>
-                  <Ionicons name="person-outline" size={75} color="#fff" />
+          {datauser && (
+            <FlatList
+              data={datauser.data}
+              renderItem={({ item }) => (
+                <View
+                  style={{ alignItems: "center", justifyContent: "center" }}
+                >
+                  <View style={styles.header_loans}>
+                    <View style={styles.loans_icon}>
+                      <Ionicons name="person-outline" size={75} color="#fff" />
+                    </View>
+                    <View>
+                      <Text style={styles.text_loans}>{item.descripcion}</Text>
+                      <Text>Monto Prestamo : {item.monto_prestamo}</Text>
+                      <Text>Balance Prestamo : {item.balance_prestamo}</Text>
+                      <Text>
+                        Fecha de vencimiento : {item.fecha_vencimiento}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
-                <View>
-                  <Text style={styles.text_loans}>{item.descripcion}</Text>
-                  <Text>Monto Prestamo : {item.monto_prestamo}</Text>
-                  <Text>Balance Prestamo : {item.balance_prestamo}</Text>
-                  <Text>Fecha de vencimiento : {item.fecha_vencimiento}</Text>
-                </View>
-              </View>
-            )}
-            keyExtractor={(item, index) => index.toString()}
-          />
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          )}
         </View>
       </View>
     </View>
@@ -147,14 +155,30 @@ const styles = StyleSheet.create({
   header_loans: {
     flexDirection: "row",
     justifyContent: "space-evenly",
+    width: 375,
+    height: 100,
     marginTop: "4%",
-    borderWidth: 1,
-    paddingVertical: 10,
-    borderRadius: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    elevation: 2,
+    backgroundColor: "#fff",
+    borderRadius: 10,
   },
   text_loans: {
     fontWeight: "bold",
     fontSize: 17,
     color: Colors.third,
+  },
+  loans_icon: {
+    width: "30%",
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: Colors.third,
   },
 });

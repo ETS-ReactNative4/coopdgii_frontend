@@ -4,8 +4,6 @@ import {
   Image,
   StyleSheet,
   Pressable,
-  Modal,
-  FlatList,
   useWindowDimensions,
 } from "react-native";
 import React from "react";
@@ -16,11 +14,8 @@ import {
 import Logo from "../assets/images/logo_home.png";
 import { Texts_var } from "../styles/styled";
 import { Colors } from "../styles/styled";
-import { AntDesign } from "@expo/vector-icons";
-import {
-  NavigationHelpersContext,
-  useNavigation,
-} from "@react-navigation/native";
+import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function homeItems(props) {
@@ -64,37 +59,41 @@ export default function homeItems(props) {
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
       {/*lOGOUT BUTTON*/}
-      <Pressable style={[styles.footer_view]} onPress={removeItem}>
-        <View style={{ marginRight: "2%" }}>
-          <Text
-            style={{ color: Colors.third, fontSize: 16, fontWeight: "bold" }}
-          >
-            Salir
-          </Text>
-        </View>
-        <View>
-          <AntDesign name="poweroff" size={20} color="black" />
+      <Pressable style={{ alignItems: "center" }} onPress={removeItem}>
+        <View style={[styles.footer_view]}>
+          <View style={{ marginRight: "3%" }}>
+            <Text
+              style={{ color: Colors.third, fontSize: 16, fontWeight: "bold" }}
+            >
+              Salir
+            </Text>
+          </View>
+          <View>
+            <FontAwesome name="power-off" size={20} color="black" />
+          </View>
         </View>
       </Pressable>
       {/*Footer Text*/}
-      <View style={{ flexDirection: "row", marginLeft: "8%" }}>
-        <View style={{ marginRight: "2%" }}>
-          <Text
-            style={{ color: Colors.third, fontSize: 14, fontWeight: "bold" }}
-          >
-            COOPDGII
-          </Text>
-        </View>
-        <View>
-          <Text
-            style={{
-              color: Texts_var.ratesDark_blue,
-              fontSize: 14,
-              fontWeight: "bold",
-            }}
-          >
-            MOVIL 1.0
-          </Text>
+      <View style={{ alignItems: "center" }}>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ marginRight: "2%" }}>
+            <Text
+              style={{ color: Colors.third, fontSize: 14, fontWeight: "bold" }}
+            >
+              COOPDGII
+            </Text>
+          </View>
+          <View>
+            <Text
+              style={{
+                color: Texts_var.ratesDark_blue,
+                fontSize: 14,
+                fontWeight: "bold",
+              }}
+            >
+              MOVIL 1.0
+            </Text>
+          </View>
         </View>
       </View>
     </View>
@@ -103,8 +102,7 @@ export default function homeItems(props) {
 
 const styles = StyleSheet.create({
   image_container: {
-    padding: 10,
-    marginBottom: 10,
+    height: 200,
   },
   image: {
     width: "100%",
@@ -117,8 +115,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     padding: 20,
-    borderWidth: 0.1,
+    borderWidth: 0.5,
     borderColor: Colors.third,
-    borderRadius: 100,
+    borderRadius: 40,
   },
 });

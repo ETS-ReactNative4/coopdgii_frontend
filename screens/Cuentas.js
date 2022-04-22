@@ -6,6 +6,7 @@ import {
   ImageBackground,
   Pressable,
   Alert,
+  Modal,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { Ionicons } from "@expo/vector-icons";
@@ -13,16 +14,24 @@ import { Feather } from "@expo/vector-icons";
 import { Fontisto } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import Women from "../assets/images/woman-writing.jpg";
 import { Colors } from "../styles/styled";
 import { Texts_var } from "../styles/styled";
 import moment from "moment";
 import { Picker } from "@react-native-picker/picker";
-import All_products from "../components/All_products";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import useToken from "../hooks/useToken";
 
+const token = {
+  token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
+};
 export default function Cuentas({ navigation }) {
   const [name, setName] = useState();
+  const { datauser, loading } = useToken(
+    "https://coopdgii.com/coopvirtual/App/resumen",
+    token
+  );
   useEffect(() => {
     getToken();
   });
@@ -46,8 +55,8 @@ export default function Cuentas({ navigation }) {
     navigation.toggleDrawer();
   };
 
-  const goWhatsapp = () => {
-    navigation.navigate("Whatsapp");
+  const goSolicitud = () => {
+    navigation.navigate("Solicitudes");
   };
 
   const [value, setValue] = useState("Mostrar todos mis productos");
@@ -138,48 +147,296 @@ export default function Cuentas({ navigation }) {
               case "Mostrar todos mis productos":
                 return (
                   <View>
-                    <All_products
-                      icon={"piggy-bank"}
-                      type={"Cuentas"}
-                      type_acc={"Cuentas Aportaciones"}
-                    />
-                    <All_products
-                      icon={"coins"}
-                      type={"Inversion"}
-                      type_acc={"Certificado Financiero"}
-                    />
-                    <All_products
-                      icon={"money-bill"}
-                      type={"Prestamos"}
-                      type_acc={"Prestamo Normal"}
-                      special_acc={"Existe"}
-                    />
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginTop: "2%",
+                      }}
+                    >
+                      <View style={{ marginRight: "2%" }}>
+                        <FontAwesome5
+                          name="piggy-bank"
+                          size={24}
+                          color={Colors.third}
+                        />
+                      </View>
+                      <View>
+                        <Text style={[styles.cuentas_text, { fontSize: 15 }]}>
+                          Cuentas
+                        </Text>
+                      </View>
+                    </View>
+                    {datauser &&
+                      datauser.data.cuentas.map(function (index) {
+                        return (
+                          <View
+                            key={index.idcuenta}
+                            style={styles.container_details}
+                          >
+                            <View style={styles.cuentas_view}>
+                              <View>
+                                <Text style={styles.cuentas_text}>
+                                  {index.tipo}
+                                </Text>
+                                <Text>{index.idcuenta}</Text>
+                              </View>
+                              <View>
+                                <Text
+                                  style={[
+                                    styles.cuentas_text,
+                                    { fontSize: 14 },
+                                  ]}
+                                >
+                                  Balance Disponible
+                                </Text>
+                                <Text>{index.balance_disponible}</Text>
+                              </View>
+                            </View>
+                          </View>
+                        );
+                      })}
+                    <View>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          marginTop: "2%",
+                          marginLeft: "2%",
+                        }}
+                      >
+                        <View style={{ marginRight: "2%" }}>
+                          <FontAwesome5
+                            name="coins"
+                            size={24}
+                            color={Colors.third}
+                          />
+                        </View>
+                        <View>
+                          <Text style={[styles.cuentas_text, { fontSize: 15 }]}>
+                            Inversion
+                          </Text>
+                        </View>
+                      </View>
+
+                      <View style={styles.container_details}>
+                        <View style={styles.cuentas_view}>
+                          <View>
+                            <Text
+                              style={[styles.cuentas_text, { fontSize: 14 }]}
+                            >
+                              Certificado Financiero
+                            </Text>
+                            <Text>100511544542</Text>
+                          </View>
+                          <View>
+                            <Text
+                              style={[styles.cuentas_text, { fontSize: 14 }]}
+                            >
+                              Balance Disponible
+                            </Text>
+                            <Text>512105450154</Text>
+                          </View>
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginTop: "2%",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      <View style={{ marginRight: "2%" }}>
+                        <FontAwesome5
+                          name="money-bill"
+                          size={24}
+                          color={Colors.third}
+                        />
+                      </View>
+                      <View>
+                        <Text style={[styles.cuentas_text, { fontSize: 15 }]}>
+                          Prestamos
+                        </Text>
+                      </View>
+                    </View>
+                    {datauser &&
+                      datauser.data.prestamos.map(function (index) {
+                        return (
+                          <View
+                            key={index.idprestamo}
+                            style={styles.container_details}
+                          >
+                            <View style={styles.cuentas_view}>
+                              <View>
+                                <Text style={styles.cuentas_text}>
+                                  {index.descripcion}
+                                </Text>
+                                <Text>{index.monto_prestamo}</Text>
+                              </View>
+                              <View>
+                                <Text
+                                  style={[
+                                    styles.cuentas_text,
+                                    { fontSize: 14 },
+                                  ]}
+                                >
+                                  Balance Disponible
+                                </Text>
+                                <Text>{index.balance_prestamo}</Text>
+                              </View>
+                            </View>
+                          </View>
+                        );
+                      })}
                   </View>
                 );
               case "Cuentas":
                 return (
-                  <All_products
-                    icon={"piggy-bank"}
-                    type={"Cuentas"}
-                    type_acc={"Cuentas Aportaciones"}
-                  />
+                  <View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginTop: "2%",
+                      }}
+                    >
+                      <View style={{ marginRight: "2%" }}>
+                        <FontAwesome5
+                          name="piggy-bank"
+                          size={24}
+                          color={Colors.third}
+                        />
+                      </View>
+                      <View>
+                        <Text style={[styles.cuentas_text, { fontSize: 15 }]}>
+                          Cuentas
+                        </Text>
+                      </View>
+                    </View>
+                    {datauser &&
+                      datauser.data.cuentas.map(function (index) {
+                        return (
+                          <View
+                            key={index.idcuenta}
+                            style={styles.container_details}
+                          >
+                            <View style={styles.cuentas_view}>
+                              <View>
+                                <Text style={styles.cuentas_text}>
+                                  {index.tipo}
+                                </Text>
+                                <Text>{index.idcuenta}</Text>
+                              </View>
+                              <View>
+                                <Text
+                                  style={[
+                                    styles.cuentas_text,
+                                    { fontSize: 14 },
+                                  ]}
+                                >
+                                  Balance Disponible
+                                </Text>
+                                <Text>{index.balance_disponible}</Text>
+                              </View>
+                            </View>
+                          </View>
+                        );
+                      })}
+                  </View>
                 );
               case "Inversion":
                 return (
-                  <All_products
-                    icon={"coins"}
-                    type={"Inversion"}
-                    type_acc={"Certificado Financiero"}
-                  />
+                  <View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginTop: "2%",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      <View style={{ marginRight: "2%" }}>
+                        <FontAwesome5
+                          name="coins"
+                          size={24}
+                          color={Colors.third}
+                        />
+                      </View>
+                      <View>
+                        <Text style={[styles.cuentas_text, { fontSize: 15 }]}>
+                          Inversion
+                        </Text>
+                      </View>
+                    </View>
+
+                    <View style={styles.container_details}>
+                      <View style={styles.cuentas_view}>
+                        <View>
+                          <Text style={[styles.cuentas_text, { fontSize: 14 }]}>
+                            Certificado Financiero
+                          </Text>
+                          <Text>100511544542</Text>
+                        </View>
+                        <View>
+                          <Text style={[styles.cuentas_text, { fontSize: 14 }]}>
+                            Balance Disponible
+                          </Text>
+                          <Text>512105450154</Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
                 );
               case "Prestamos":
                 return (
-                  <All_products
-                    icon={"money-bill"}
-                    type={"Prestamos"}
-                    type_acc={"Prestamo Normal"}
-                    special_acc={"Existe"}
-                  />
+                  <View>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        marginTop: "2%",
+                        marginLeft: "2%",
+                      }}
+                    >
+                      <View style={{ marginRight: "2%" }}>
+                        <FontAwesome5
+                          name="money-bill"
+                          size={24}
+                          color={Colors.third}
+                        />
+                      </View>
+                      <View>
+                        <Text style={[styles.cuentas_text, { fontSize: 15 }]}>
+                          Prestamos
+                        </Text>
+                      </View>
+                    </View>
+                    {datauser &&
+                      datauser.data.prestamos.map(function (index) {
+                        return (
+                          <View
+                            key={index.idprestamo}
+                            style={styles.container_details}
+                          >
+                            <View style={styles.cuentas_view}>
+                              <View>
+                                <Text style={styles.cuentas_text}>
+                                  {index.descripcion}
+                                </Text>
+                                <Text>{index.monto_prestamo}</Text>
+                              </View>
+                              <View>
+                                <Text
+                                  style={[
+                                    styles.cuentas_text,
+                                    { fontSize: 14 },
+                                  ]}
+                                >
+                                  Balance Disponible
+                                </Text>
+                                <Text>{index.balance_prestamo}</Text>
+                              </View>
+                            </View>
+                          </View>
+                        );
+                      })}
+                  </View>
                 );
               default:
                 return null;
@@ -205,6 +462,7 @@ export default function Cuentas({ navigation }) {
               styles.footer_views,
               { marginRight: "25%", marginLeft: "5%" },
             ]}
+            onPress={goSolicitud}
           >
             <FontAwesome name="paper-plane-o" size={24} color={Colors.third} />
             <Text>Solicitud</Text>
@@ -213,7 +471,7 @@ export default function Cuentas({ navigation }) {
             <Foundation name="telephone" size={24} color={Colors.third} />
             <Text>Contacto</Text>
           </Pressable>
-          <Pressable style={[styles.footer_views]} onPress={goWhatsapp}>
+          <Pressable style={[styles.footer_views]}>
             <FontAwesome name="whatsapp" size={24} color={Colors.third} />
             <Text>Whatsapp</Text>
           </Pressable>
@@ -244,5 +502,20 @@ const styles = StyleSheet.create({
   footer_views: {
     alignItems: "center",
     justifyContent: "center",
+  },
+  cuentas_view: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  container_details: {
+    marginTop: "3%",
+    marginLeft: "5%",
+    marginRight: "5%",
+    borderBottomWidth: 1,
+  },
+  cuentas_text: {
+    color: Colors.third,
+    fontWeight: "bold",
+    fontSize: 13,
   },
 });
