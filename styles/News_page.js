@@ -37,20 +37,6 @@ const News_pages = StyleSheet.create({
     textShadowRadius: 1,
     shadowOpacity: 3,
   },
-
-  container_modal: {
-    backgroundColor: Colors.bg_container_modal,
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  spiner_container: {
-    backgroundColor: "white",
-    width: 100,
-    height: 100,
-    justifyContent: "center",
-    borderRadius: 10,
-  },
 });
 
 export default News_pages;

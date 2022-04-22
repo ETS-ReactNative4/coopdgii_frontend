@@ -1,9 +1,7 @@
 const Colors = {
   primary: "#6BCB77",
   secondary: "rgb(68, 68, 68)",
-  //Color Dark_Green
   third: "#239B56",
-  //Login Background Color
   fourth: "#F9FBFC",
   bg_color: "white",
   bg_btnColor: "#F7F5F2",
