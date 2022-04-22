@@ -6,6 +6,7 @@ export default function Btn_link({
   onPress,
   text,
   styled,
+  size = 15,
   color = Texts_var.ratesDark_blue,
 }) {
   return (
@@ -13,7 +14,7 @@ export default function Btn_link({
       onPress={onPress}
       style={[styles.btn_link_container, styled]}
     >
-      <Text style={{ color: color }}>{text}</Text>
+      <Text style={{ color: color, fontSize: size }}>{text}</Text>
     </TouchableOpacity>
   );
 }

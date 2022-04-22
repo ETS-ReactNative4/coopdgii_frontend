@@ -5,13 +5,14 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import HomeItems from "./HomeItems";
 import Prestamos from "../screens/Prestamos";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import News from "../screens/News";
 import { Entypo } from "@expo/vector-icons";
 import Certificado from "../screens/Certificado";
 import Descuentos from "../screens/Descuentos";
 import TabNavigator from "../tabs/TabNavigator";
 import Contact from "../screens/Contact";
-
+import ForgotPassword from "../screens/ForgotPassword";
 const Drawer = createDrawerNavigator();
 
 export default function HomeDrawer({ navigation }) {
@@ -86,6 +87,15 @@ export default function HomeDrawer({ navigation }) {
         options={{
           drawerIcon: ({ color }) => (
             <Entypo name="help" size={24} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Configuracion"
+        component={ForgotPassword}
+        options={{
+          drawerIcon: ({ color }) => (
+            <MaterialCommunityIcons name="lock-reset" size={24} color={color} />
           ),
         }}
       />
