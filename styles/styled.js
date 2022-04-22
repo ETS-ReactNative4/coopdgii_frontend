@@ -9,9 +9,11 @@ const Colors = {
   bg_btnColor: "#F7F5F2",
   close: "red",
   black: "black",
-  white: "#FFFBE7",
+  white: "#FFFFFF",
   bg_divisas: "rgb(107, 203, 119)",
   dark_Blue: "#00008B",
+  bg_container_modal: "rgba(68, 68, 68,0.5)",
+  cuentas_title: "#444444",
 };
 
 const Texts_var = {

@@ -1,76 +1,84 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
-  Dimensions,
-  StatusBar,
   ActivityIndicator,
-} from "react-native";
-import {
-  NativeBaseProvider,
+  Modal,
+  ImageBackground,
   FlatList,
-  Divider,
-  Image,
-  Spinner,
-} from "native-base";
-import moment from "moment";
-import { styles } from "../styles/home_page";
+} from "react-native";
 import useGet from "../hooks/useGet";
 import { Colors } from "../styles/styled";
+import useModal from "../hooks/useModal";
+import News_pages from "../styles/News_page";
+import newsBackground from "../assets/newsBackground.jpg";
+import New_card from "../components/New_card";
+import { Entypo } from "@expo/vector-icons";
 
-export default function News() {
+export default function News({ navigation }) {
   const { data, loading, error } = useGet(
     "https://coopdgii.com/coopvirtual/App/noticias"
   );
+  const [isLoadingModalOpen, openLoadingModal, closeLoadingModal] = useModal(
+    !loading
+  );
 
-  if (loading)
-    return (
-      <View style={styles.spinner}>
-        <ActivityIndicator size={"large"} color={Colors.third} />
-      </View>
-    );
+  useEffect(() => {
+    if (loading) openLoadingModal();
+    else {
+      closeLoadingModal();
+    }
+  }, [loading]);
+
+  const openDrawer = () => {
+    navigation.toggleDrawer();
+  };
 
   return (
-    <NativeBaseProvider>
-      <View
-        style={{
-          height: Dimensions.get("window").height,
-          width: Dimensions.get("window").width,
-          marginTop: StatusBar.currentHeight,
-        }}
-      >
-        {data?.data.length > 1 ? (
-          <FlatList
-            data={data?.data}
-            renderItem={({ item }) => (
-              <View>
-                <View style={styles.newsContainer}>
-                  <Image
-                    width={550}
-                    height={250}
-                    resizeMode={"cover"}
-                    source={{
-                      uri: item.imagen,
-                    }}
-                    alt="Alternate Text"
-                  />
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.date}>
-                    {moment(item.date).format("LLL")}
-                  </Text>
-                  <Text style={styles.newsDescription}>{item.content}</Text>
-                </View>
-                <Divider my={2} bg="#e0e0e0" />
-              </View>
-            )}
-            keyExtractor={(item, index) => index.toString()}
+    <>
+      <View style={News_pages.page}>
+        <View style={{ position: "absolute", zIndex: 20, top: 10, left: 10 }}>
+          <Entypo
+            name="menu"
+            size={26}
+            color={Colors.third}
+            onPress={openDrawer}
           />
-        ) : (
-          <View style={styles.spinner}>
-            <Spinner color="danger.400" />
-          </View>
-        )}
+        </View>
+        <View style={News_pages.header}>
+          <ImageBackground
+            source={newsBackground}
+            style={News_pages.header_background}
+          >
+            <View>
+              <Text style={News_pages.header_title}>COOPDGII NEWS</Text>
+            </View>
+          </ImageBackground>
+        </View>
+        <View style={News_pages.body}>
+          {!loading && (
+            <FlatList
+              data={data?.data}
+              keyExtractor={(item, index) => `${index}-${item.id}`}
+              renderItem={({ item }) => (
+                <New_card
+                  img={item.imagen}
+                  title={item.title}
+                  onNextScreen={() => navigation.navigate("New", { item })}
+                />
+              )}
+            />
+          )}
+        </View>
       </View>
-    </NativeBaseProvider>
+
+      <Modal visible={isLoadingModalOpen} transparent={true}>
+        <View style={News_pages.container_modal}>
+          <View style={News_pages.spiner_container}>
+            <ActivityIndicator size={"large"} color={Colors.third} />
+          </View>
+        </View>
+      </Modal>
+    </>
   );
 }
