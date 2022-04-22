@@ -18,9 +18,8 @@ export const styles = StyleSheet.create({
     fontSize: 14,
   },
   spinner: {
-    display: "flex",
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    height: 400,
   },
 });
