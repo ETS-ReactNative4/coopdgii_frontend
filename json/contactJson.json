@@ -1,0 +1,47 @@
+[
+    {
+        "name":"Suelin Pimentel",
+        "job":"Encargada de Area de Servicio",
+        "img":"Suelin",
+        "desc":"Nuestra área de servicio siempre innovando para mantener informado a todos socios.",
+        "tel":"809-287-2386",
+        "email":"supimentel@dgii.gov.do"
+
+    },
+    {
+        "name":"Maria Escolastico",
+        "job":"Oficial de Servicio",
+        "img":"Maria",
+        "desc":"Nuestra área de servicio siempre innovando para mantener informado a todos socios.",
+        "tel":"809-287-2873",
+        "email":"mescolastico@dgii.gov.do"
+
+    },
+    {
+        "name":"Anny Rodriguez",
+        "job":"Oficial de Servicio",
+        "img":"Anny",
+        "desc":"Nuestra área de servicio siempre innovando para mantener informado a todos socios.",
+        "tel":"809-287-2833",
+        "email":"annrodrigu@dgii.gov.do"
+
+    },
+    {
+        "name":"Yulitza Nuñez",
+        "job":"Cajera Oficial de Servicios",
+        "img":"Yulitza",
+        "desc":"Nuestra área de servicio siempre innovando para mantener informado a todos socios.",
+        "tel":"809-287-2833",
+        "email":"ymnunezb@dgii.gov.do"
+
+    },
+    {
+        "name":"Yohanny Duarte",
+        "job":"Oficial de Servicio",
+        "img":"Yohanny",
+        "desc":"Nuestra área de servicio siempre innovando para mantener informado a todos socios.",
+        "tel":"809-287-2875",
+        "email":"yduarte@dgii.gov.do"
+
+    }
+]
