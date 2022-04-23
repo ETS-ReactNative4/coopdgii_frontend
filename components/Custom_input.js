@@ -11,10 +11,11 @@ export default function Custom_input({
   name,
   icon = null,
   color = "black",
+  styled = {},
   ...prop
 }) {
   return (
-    <View style={styles.input_container}>
+    <View style={[styles.input_container, styled]}>
       <TextInput
         style={styles.input}
         placeholder={placeholder}
@@ -46,6 +47,7 @@ const styles = StyleSheet.create({
   },
   input: {
     paddingLeft: 20,
+    marginLeft: 5,
   },
   icon: {
     position: "absolute",

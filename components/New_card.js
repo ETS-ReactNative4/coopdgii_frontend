@@ -29,15 +29,16 @@ const CardStyle = StyleSheet.create({
     width: width * 0.85,
     marginBottom: 25,
     height: height * 0.35,
-    overflow: "hidden",
+
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 2,
     },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+
+    elevation: 4,
   },
   container: {
     // backgroundColor: "#F1F3F4",

@@ -2,7 +2,7 @@ import React from "react";
 import Custom_input from "./Custom_input";
 import { Colors } from "../styles/styled";
 import { Text } from "react-native";
-const DinamicInput = ({ name, type, handleChange, value }) => {
+const DinamicInput = ({ name, type, handleChange, value, styled }) => {
   switch (type) {
     case "select":
       return <Text>Select</Text>;
@@ -23,6 +23,8 @@ const DinamicInput = ({ name, type, handleChange, value }) => {
           iconName={type === "text" ? "text" : "add-outline"}
           color={Colors.third}
           keyboardType={type === "text" ? "default" : "numeric"}
+          styled={styled}
+          autoFocus={true}
         />
       );
   }

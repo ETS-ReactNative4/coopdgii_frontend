@@ -8,11 +8,13 @@ export default function Btn_link({
   styled,
   size = 15,
   color = Texts_var.ratesDark_blue,
+  ...prop
 }) {
   return (
     <TouchableOpacity
       onPress={onPress}
       style={[styles.btn_link_container, styled]}
+      {...prop}
     >
       <Text style={{ color: color, fontSize: size }}>{text}</Text>
     </TouchableOpacity>
