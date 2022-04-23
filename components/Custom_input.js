@@ -9,6 +9,8 @@ export default function Custom_input({
   secure,
   onChange,
   name,
+  icon = null,
+  color = "black",
 }) {
   return (
     <View style={styles.input_container}>
@@ -19,7 +21,11 @@ export default function Custom_input({
         value={value}
         secureTextEntry={secure}
       />
-      <Ionicons name={iconName} size={24} color="black" style={styles.icon} />
+      {icon ? (
+        { icon }
+      ) : (
+        <Ionicons name={iconName} size={24} color={color} style={styles.icon} />
+      )}
     </View>
   );
 }

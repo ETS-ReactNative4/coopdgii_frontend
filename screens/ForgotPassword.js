@@ -1,7 +1,8 @@
-import React from "react";
-import { View, Text, Image, TextInput, Button } from "react-native";
+import React, { useState } from "react";
+import { View, Text, Image } from "react-native";
 import Btn_icon from "../components/Btn_icon";
 import btnDrawerStyle from "../styles/btnDrawerStyle";
+import Custom_input from "../components/Custom_input";
 import { Entypo } from "@expo/vector-icons";
 import { Colors } from "../styles/styled";
 import { Feather } from "@expo/vector-icons";
@@ -9,9 +10,12 @@ import ForgotPass from "../assets/ForgotPass.png";
 import ForgotPassword_styled from "../styles/ForgotPassword_styled";
 import Btn_link from "../components/Btn_link";
 const ForgotPassword = ({ navigation }) => {
+  const [email, setEmail] = useState("");
   const openDrawer = () => {
     navigation.toggleDrawer();
   };
+
+  const handleChange = (name, text) => setEmail(text);
 
   return (
     <View style={ForgotPassword_styled.page}>
@@ -35,14 +39,16 @@ const ForgotPassword = ({ navigation }) => {
           No te preocupes! no pasa nada. Por favor ingresa el email realcionado
           con tu cuenta
         </Text>
-        <View style={ForgotPassword_styled.Input}>
-          <Feather name="at-sign" size={24} color={Colors.third} />
-          <TextInput
-            placeholder="Email ID / Mobile number"
-            placeholderTextColor={Colors.cuentas_title}
-            style={ForgotPassword_styled.InputText}
-          />
-        </View>
+        <Custom_input
+          placeholder="Escribe la contraseña otra vez"
+          value={email}
+          handleChange={handleChange}
+          name="email"
+          secure={true}
+          iconName="at-circle-outline"
+          color={Colors.third}
+        />
+
         <Btn_link
           text="Enviar"
           color={Colors.white}
