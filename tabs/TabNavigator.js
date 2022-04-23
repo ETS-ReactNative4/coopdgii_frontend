@@ -5,6 +5,7 @@ import SolicitudTipo from "../screens/SolicitudTipo";
 import SolicitudRegistro from "../screens/SolicitudRegistro";
 import { FontAwesome } from "@expo/vector-icons";
 import { Colors } from "../styles/styled";
+import RequestType from "../screens/RequestType";
 
 const Tab = createBottomTabNavigator();
 export default function TabNavigator() {
@@ -30,7 +31,7 @@ export default function TabNavigator() {
       })}
     >
       <Tab.Screen name="Solicitud" component={Solicitud} />
-      <Tab.Screen name="Tipos" component={SolicitudTipo} />
+      <Tab.Screen name="Tipos" component={RequestType} />
       <Tab.Screen name="Registro" component={SolicitudRegistro} />
     </Tab.Navigator>
   );

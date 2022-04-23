@@ -11,6 +11,7 @@ export default function Custom_input({
   name,
   icon = null,
   color = "black",
+  ...prop
 }) {
   return (
     <View style={styles.input_container}>
@@ -20,6 +21,7 @@ export default function Custom_input({
         onChangeText={(text) => onChange(name, text)}
         value={value}
         secureTextEntry={secure}
+        {...prop}
       />
       {icon ? (
         { icon }
