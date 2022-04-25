@@ -44,9 +44,11 @@ const RequestType = ({ navigation }) => {
 
   useEffect(() => {
     if (formSelected) {
-      setForm({});
       const request = data["data"].find((item) => item.id === formSelected);
-      if (request?.campos_data) setInputList(request?.campos_data);
+      if (request?.campos_data) {
+        setInputList(request?.campos_data);
+        setForm({ id: formSelected });
+      }
     }
   }, [formSelected]);
 
