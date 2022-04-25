@@ -22,7 +22,8 @@ const RequestType = ({ navigation }) => {
   const [InputList, setInputList] = useState([]);
 
   const handleChange = (name, text) => setForm({ ...form, [name]: text });
-
+  const numbers = ["1", "2", "3", "4", "5", "6", "7", "8"];
+  const person = ["persona fisica", "no persona"];
   useEffect(() => {
     if (data) {
       setPickerList(
@@ -86,6 +87,9 @@ const RequestType = ({ navigation }) => {
                   handleChange={handleChange}
                   value={form[item.nombre]}
                   styled={RequestType_styled.input}
+                  pickerDatos={item.id === 1 ? person : numbers}
+                  pickerStatus={item.id === 1 ? person[0] : numbers[0]}
+                  multiline={item.tipo === "textarea"}
                 />
               )}
             />
