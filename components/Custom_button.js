@@ -2,9 +2,13 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { Colors } from "../styles/styled";
 
-export default function Custom_button({ onPress }) {
+export default function Custom_button({ onPress, disabled }) {
   return (
-    <TouchableOpacity onPress={onPress} style={styles.button_container}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={styles.button_container}
+      disabled={disabled}
+    >
       <Text style={styles.text}>INICIAR SESION</Text>
     </TouchableOpacity>
   );

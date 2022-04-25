@@ -155,7 +155,10 @@ export default function Sign_in() {
             onChange={handleChange}
             secure={true}
           />
-          <Custom_button onPress={verifyData} />
+          <Custom_button
+            onPress={verifyData}
+            disabled={loading ? false : true}
+          />
           <Btn_link
             onPress={() => openHelpModal()}
             text={"¿Tiene Problemas para iniciar sesion?"}

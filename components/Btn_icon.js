@@ -3,9 +3,12 @@ import { TouchableOpacity } from "react-native";
 
 import { Colors } from "../styles/styled";
 
-const Btn_icon = ({onPress,icon, styleButton}) => {
+const Btn_icon = ({ onPress, icon, styleButton, color }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={styleButton}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styleButton, { backgroundColor: color }]}
+    >
       {icon}
     </TouchableOpacity>
   );

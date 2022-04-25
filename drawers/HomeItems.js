@@ -17,10 +17,12 @@ import { Colors } from "../styles/styled";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import useStore from "../hooks/useStore";
 
 export default function homeItems(props) {
   const { height } = useWindowDimensions();
   const navigation = useNavigation();
+  const { nombre } = useStore();
 
   const removeItem = async () => {
     try {
@@ -51,7 +53,7 @@ export default function homeItems(props) {
                   { fontWeight: "bold", color: Colors.third },
                 ]}
               >
-                Adawel
+                {nombre}
               </Text>
             </View>
           </View>

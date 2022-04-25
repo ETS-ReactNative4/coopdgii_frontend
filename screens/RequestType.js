@@ -9,6 +9,7 @@ import DinamicInput from "../components/DinamicInput";
 import Btn_link from "../components/Btn_link";
 import Btn_icon from "../components/Btn_icon";
 import btnDrawerStyle from "../styles/btnDrawerStyle";
+import setData from "../helpers/dataSolicitud";
 
 import { Colors } from "../styles/styled";
 
@@ -20,6 +21,8 @@ const RequestType = ({ navigation }) => {
   const [pickerList, setPickerList] = useState([]);
   const [formSelected, setFormSelected] = useState();
   const [InputList, setInputList] = useState([]);
+  var arr = [];
+  var temp = [];
 
   const handleChange = (name, text) => setForm({ ...form, [name]: text });
   const numbers = ["1", "2", "3", "4", "5", "6", "7", "8"];
@@ -36,8 +39,22 @@ const RequestType = ({ navigation }) => {
   }, [data]);
 
   const handlePress = () => {
-    console.log(form);
+    for (let element in form) {
+      arr.push(`${element}`, `${form[element]}`);
+    }
+    {
+      arr && divideArr(arr);
+    }
   };
+
+  function divideArr(component) {
+    for (let i = 0; i < component.length; i += 2) {
+      let divided = component.slice(i, i + 2);
+      temp.push(divided);
+    }
+    return setData(temp, form.id);
+  }
+
   const handleNavegation = () => {
     navigation.openDrawer();
   };
@@ -55,7 +72,7 @@ const RequestType = ({ navigation }) => {
   return (
     <View style={RequestType_styled.page}>
       <Btn_icon
-        icon={<Entypo name="menu" size={24} color={Colors.white} />}
+        icon={<Entypo name="menu" size={24} color={Colors.black} />}
         onPress={handleNavegation}
         styleButton={btnDrawerStyle.btn}
       />

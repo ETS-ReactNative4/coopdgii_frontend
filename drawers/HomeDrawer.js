@@ -13,6 +13,8 @@ import Descuentos from "../screens/Descuentos";
 import TabNavigator from "../tabs/TabNavigator";
 import Contact from "../screens/Contact";
 import ForgotPassword from "../screens/ForgotPassword";
+import Inversion from "../screens/Inversion";
+import RequestType from "../screens/RequestType";
 const Drawer = createDrawerNavigator();
 
 export default function HomeDrawer({ navigation }) {
@@ -55,6 +57,15 @@ export default function HomeDrawer({ navigation }) {
         }}
       />
       <Drawer.Screen
+        name="Inversiones"
+        component={Inversion}
+        options={{
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="money-check" size={20} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
         name="Descuentos"
         component={Descuentos}
         options={{
@@ -64,20 +75,20 @@ export default function HomeDrawer({ navigation }) {
         }}
       />
       <Drawer.Screen
+        name="Solicitudes"
+        component={RequestType}
+        options={{
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="paperclip" size={20} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
         name="Noticias"
         component={News}
         options={{
           drawerIcon: ({ color }) => (
             <Entypo name="news" size={20} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name="Solicitudes"
-        component={TabNavigator}
-        options={{
-          drawerIcon: ({ color }) => (
-            <FontAwesome5 name="paperclip" size={20} color={color} />
           ),
         }}
       />

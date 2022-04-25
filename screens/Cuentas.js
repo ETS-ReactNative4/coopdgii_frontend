@@ -24,8 +24,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import useToken from "../hooks/useToken";
 import useModal from "../hooks/useModal";
 import Card_modal from "../components/Card_modal";
-import Whatsapp from "./Whatsapp";
-import { Entypo } from "@expo/vector-icons";
+import useStore from "../hooks/useStore";
+
 const token = {
   token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
 };
@@ -35,25 +35,8 @@ export default function Cuentas({ navigation }) {
     "https://coopdgii.com/coopvirtual/App/resumen",
     token
   );
+  const { nombre } = useStore();
   const [isNumberModalOpen, openNumberModal, closeNumberModal] = useModal();
-  useEffect(() => {
-    getToken();
-  });
-
-  async function getToken() {
-    try {
-      await AsyncStorage.getItem("token").then((value) => {
-        if (value != null) {
-          let user = JSON.parse(value);
-          setName(user.Nombre);
-        } else {
-          console.log("No hay nada");
-        }
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   const openSideMenu = () => {
     navigation.toggleDrawer();
@@ -117,7 +100,7 @@ export default function Cuentas({ navigation }) {
                 </View>
                 <View>
                   <Text style={[styles.text, { color: Colors.third }]}>
-                    {name}
+                    {nombre}
                   </Text>
                 </View>
               </View>
@@ -174,6 +157,7 @@ export default function Cuentas({ navigation }) {
                         </Text>
                       </View>
                     </View>
+                    {/*Cuentas View*/}
                     {datauser &&
                       datauser.data.cuentas.map(function (index) {
                         return (
@@ -204,6 +188,7 @@ export default function Cuentas({ navigation }) {
                         );
                       })}
                     <View>
+                      {/* Inversiones View*/}
                       <View
                         style={{
                           flexDirection: "row",
@@ -266,6 +251,7 @@ export default function Cuentas({ navigation }) {
                         </Text>
                       </View>
                     </View>
+                    {/*Prestamos View*/}
                     {datauser &&
                       datauser.data.prestamos.map(function (index) {
                         return (
