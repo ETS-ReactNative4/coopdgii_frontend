@@ -10,11 +10,11 @@ import News from "../screens/News";
 import { Entypo } from "@expo/vector-icons";
 import Certificado from "../screens/Certificado";
 import Descuentos from "../screens/Descuentos";
-import TabNavigator from "../tabs/TabNavigator";
 import Contact from "../screens/Contact";
 import ForgotPassword from "../screens/ForgotPassword";
 import Inversion from "../screens/Inversion";
 import RequestType from "../screens/RequestType";
+import Solicitud from "../screens/Solicitud";
 const Drawer = createDrawerNavigator();
 
 export default function HomeDrawer({ navigation }) {
@@ -22,7 +22,7 @@ export default function HomeDrawer({ navigation }) {
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
-        drawerLabelStyle: { fontSize: 15, marginLeft: -20 },
+        drawerLabelStyle: { fontSize: 12, marginLeft: -20 },
         drawerActiveBackgroundColor: "#239B56",
         drawerActiveTintColor: "#ffff",
         drawerInactiveTintColor: "#333",
@@ -71,6 +71,15 @@ export default function HomeDrawer({ navigation }) {
         options={{
           drawerIcon: ({ color }) => (
             <FontAwesome5 name="discourse" size={20} color={color} />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Ver Solicitudes"
+        component={Solicitud}
+        options={{
+          drawerIcon: ({ color }) => (
+            <FontAwesome5 name="paper-plane" size={20} color={color} />
           ),
         }}
       />

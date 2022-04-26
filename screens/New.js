@@ -11,7 +11,7 @@ const New = ({ route, navigation }) => {
   return (
     <View style={New_pages.page}>
       <Btn_icon
-        icon={<AntDesign name="left" size={24} color={Colors.white} />}
+        icon={<AntDesign name="left" size={24} color={Colors.third} />}
         styleButton={New_pages.btnIcon}
         onPress={() => navigation.goBack()}
       />

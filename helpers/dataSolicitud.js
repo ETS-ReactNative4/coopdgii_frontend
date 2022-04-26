@@ -1,7 +1,7 @@
 import { Alert } from "react-native";
-export default function setData(form, id) {
+export default function setData(form, id, token) {
   var obj = new FormData();
-  obj.append("token", "TESTACCOUNTTOKEN434234345424323JAJAJA");
+  obj.append("token", `${token}`);
   obj.append("tipo", id);
   obj.append("datos", JSON.stringify(form));
   fetch("https://coopdgii.com/coopvirtual/App/solicitudes_registro", {
@@ -12,6 +12,8 @@ export default function setData(form, id) {
     .then((responseData) => {
       if (responseData.success) {
         Alert.alert("Exito", "Data enviada", [{ text: "Ok" }]);
+      } else {
+        Alert.alert("Fallo", "Data no enviada", [{ text: "Ok" }]);
       }
     });
 }

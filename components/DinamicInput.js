@@ -34,11 +34,8 @@ const DinamicInput = ({
 
     if (!result.cancelled) {
       setImage(result);
-      handleChange(name, result.uri);
-      {
-        image && Alert.alert("Adventencia", "Se ha guardado la imagen"),
-          [{ text: "Ok" }];
-      }
+      handleChange(name, result);
+      Alert.alert("Exito", "Se ha guardado la imagen", [{ text: "Ok" }]);
     }
   };
   const [pickeSatus, setpickeSatus] = useState(pickerStatus);

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import RequestType_styled from "../styles/RequestType_style";
-import { View, Text, FlatList, KeyboardAvoidingView } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  KeyboardAvoidingView,
+  Alert,
+} from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import LoandingModal from "../components/LoandingModal";
 import { Entypo } from "@expo/vector-icons";
@@ -10,6 +16,7 @@ import Btn_link from "../components/Btn_link";
 import Btn_icon from "../components/Btn_icon";
 import btnDrawerStyle from "../styles/btnDrawerStyle";
 import setData from "../helpers/dataSolicitud";
+import useStore from "../hooks/useStore";
 
 import { Colors } from "../styles/styled";
 
@@ -17,6 +24,7 @@ const RequestType = ({ navigation }) => {
   const { data, loading, err } = useHttpGet(
     "https://coopdgii.com/coopvirtual/App/solicitudes_tipo"
   );
+  const { token } = useStore();
   const [form, setForm] = useState({});
   const [pickerList, setPickerList] = useState([]);
   const [formSelected, setFormSelected] = useState();
@@ -52,7 +60,7 @@ const RequestType = ({ navigation }) => {
       let divided = component.slice(i, i + 2);
       temp.push(divided);
     }
-    return setData(temp, form.id);
+    return setData(temp, form.id, token);
   }
 
   const handleNavegation = () => {
@@ -72,9 +80,10 @@ const RequestType = ({ navigation }) => {
   return (
     <View style={RequestType_styled.page}>
       <Btn_icon
-        icon={<Entypo name="menu" size={24} color={Colors.black} />}
+        icon={<Entypo name="menu" size={24} color={Colors.white} />}
+        color={Colors.white}
         onPress={handleNavegation}
-        styleButton={btnDrawerStyle.btn}
+        styleButton={[btnDrawerStyle.btn]}
       />
       <View style={RequestType_styled.header}>
         <Text style={RequestType_styled.title}>Seleciona el tipo</Text>
