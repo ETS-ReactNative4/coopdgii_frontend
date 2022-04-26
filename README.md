@@ -15,7 +15,6 @@ It is a simple application, where it has different functionalities such as login
 
 ## Technologies used in this project :man_technologist:
 * React Native <img src="https://reactnative.dev/img/header_logo.svg" alt="reactnative" width="30" height="30"/> 
-* Styled Components <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="30" height="30"/> 
 * Some react native libraries :closed_book:
 
 ## Prerequisites :bookmark_tabs:
