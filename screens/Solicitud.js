@@ -72,44 +72,50 @@ const Solicitud = ({ navigation }) => {
         </View>
       </View>
       {/*Body View*/}
-      {datauser && (
-        <FlatList
-          data={datauser.data}
-          renderItem={({ item }) => (
-            <View
-              style={{ alignItems: "center", marginBottom: 10, marginTop: 5 }}
-            >
-              <View style={styles.list_view}>
-                <View style={styles.icon_view}>
-                  <FontAwesome name="paper-plane-o" size={24} color="#fff" />
-                </View>
-                <View>
-                  <Text style={[styles.list_text, { fontSize: 15 }]}>
-                    {item.nombre}
-                  </Text>
-                  <Text
-                    style={[
-                      styles.list_text,
-                      { color: Colors.secondary, fontSize: 15 },
-                    ]}
+      <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+        {datauser && (
+          <FlatList
+            data={datauser.data}
+            renderItem={({ item }) => (
+              <View style={styles.list_container}>
+                <View style={styles.list_view}>
+                  <View style={styles.icon_view}>
+                    <FontAwesome name="paper-plane-o" size={24} color="#fff" />
+                  </View>
+                  <View
+                    style={{
+                      width: "90%",
+                    }}
                   >
-                    Fecha:{item.fecha}
-                  </Text>
-                  <Text
-                    style={[
-                      styles.list_text,
-                      { color: Colors.secondary, fontSize: 15 },
-                    ]}
-                  >
-                    Estado:{item.estado}
-                  </Text>
+                    <Text style={[styles.list_text, { fontSize: 15 }]}>
+                      {item.nombre}
+                    </Text>
+                    <View>
+                      <Text
+                        style={[
+                          styles.list_text,
+                          { color: Colors.secondary, fontSize: 15 },
+                        ]}
+                      >
+                        Fecha:{item.fecha}
+                      </Text>
+                      <Text
+                        style={[
+                          styles.list_text,
+                          { color: Colors.secondary, fontSize: 15 },
+                        ]}
+                      >
+                        Estado:{item.estado}
+                      </Text>
+                    </View>
+                  </View>
                 </View>
               </View>
-            </View>
-          )}
-          keyExtractor={(item, index) => index.toString()}
-        />
-      )}
+            )}
+            keyExtractor={(item, index) => index.toString()}
+          />
+        )}
+      </View>
       <LoandingModal isLoadingModalOpen={loading} />
     </View>
   );
@@ -121,6 +127,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: StatusBar.currentHeight,
+  },
+  list_container: {
+    marginBottom: 15,
+    borderWidth: 1,
+    borderRadius: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 2,
+      height: 3,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+    elevation: 2,
   },
   container: {
     flex: 1,
@@ -147,8 +167,6 @@ const styles = StyleSheet.create({
   list_view: {
     width: "90%",
     flexDirection: "row",
-    borderWidth: 0.5,
-    borderRadius: 8,
   },
   icon_view: {
     width: "20%",
