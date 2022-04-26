@@ -35,7 +35,7 @@ export default function News({ navigation }) {
     <>
       <View style={News_pages.page}>
         <Btn_icon
-          icon={<Entypo name="menu" size={24} color={"red"} />}
+          icon={<Entypo name="menu" size={24} color={Colors.third} />}
           color={Colors.white}
           onPress={openDrawer}
           styleButton={[btnDrawerStyle.btn]}

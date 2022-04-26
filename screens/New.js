@@ -5,6 +5,7 @@ import New_pages from "../styles/New_page";
 import { AntDesign } from "@expo/vector-icons";
 import { Colors } from "../styles/styled";
 import moment from "moment";
+import btnDrawerStyle from "../styles/btnDrawerStyle";
 
 const New = ({ route, navigation }) => {
   const { item } = route?.params;
@@ -12,7 +13,7 @@ const New = ({ route, navigation }) => {
     <View style={New_pages.page}>
       <Btn_icon
         icon={<AntDesign name="left" size={24} color={Colors.third} />}
-        styleButton={New_pages.btnIcon}
+        styleButton={btnDrawerStyle.btn}
         onPress={() => navigation.goBack()}
       />
       <View style={New_pages.header}>

@@ -47,6 +47,7 @@ const RequestType = ({ navigation }) => {
     {
       arr && divideArr(arr);
     }
+    setForm({ id: formSelected });
   };
 
   function divideArr(component) {
