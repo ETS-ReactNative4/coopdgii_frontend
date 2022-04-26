@@ -1,5 +1,4 @@
 import { StyleSheet, StatusBar, Dimensions } from "react-native";
-import { borderRadius } from "styled-system";
 import { Colors } from "./styled";
 
 const { height, width } = Dimensions.get("screen");

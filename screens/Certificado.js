@@ -4,10 +4,9 @@ import {
   StyleSheet,
   StatusBar,
   Pressable,
-  FlatList,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { Entypo } from "@expo/vector-icons";
 import { Colors } from "../styles/styled";
 import { MaterialIcons } from "@expo/vector-icons";

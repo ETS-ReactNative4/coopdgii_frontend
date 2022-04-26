@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  FlatList,
-  Text,
-  ImageBackground,
-  ScrollView,
-} from "react-native";
+import { View, FlatList, Text, ImageBackground } from "react-native";
 
 //Iconos
 

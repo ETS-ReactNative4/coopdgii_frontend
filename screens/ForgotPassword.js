@@ -5,7 +5,6 @@ import btnDrawerStyle from "../styles/btnDrawerStyle";
 import Custom_input from "../components/Custom_input";
 import { Entypo } from "@expo/vector-icons";
 import { Colors } from "../styles/styled";
-import { Feather } from "@expo/vector-icons";
 import ForgotPass from "../assets/ForgotPass.png";
 import ForgotPassword_styled from "../styles/ForgotPassword_styled";
 import Btn_link from "../components/Btn_link";

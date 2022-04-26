@@ -5,13 +5,11 @@ import {
   StatusBar,
   ImageBackground,
   Pressable,
-  Alert,
   Modal,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
-import { Fontisto } from "@expo/vector-icons";
 import { Foundation } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -20,7 +18,6 @@ import { Colors } from "../styles/styled";
 import { Texts_var } from "../styles/styled";
 import moment from "moment";
 import { Picker } from "@react-native-picker/picker";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import useToken from "../hooks/useToken";
 import useModal from "../hooks/useModal";
 import Card_modal from "../components/Card_modal";

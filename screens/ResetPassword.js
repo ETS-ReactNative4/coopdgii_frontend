@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Image } from "react-native";
 import Reset_styled from "../styles/Reset_styled";
-import { AntDesign } from "@expo/vector-icons";
 import ForgotPassword_styled from "../styles/ForgotPassword_styled";
 import lock from "../assets/lock.png";
 import Custom_input from "../components/Custom_input";

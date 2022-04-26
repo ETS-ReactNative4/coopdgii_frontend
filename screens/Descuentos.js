@@ -7,7 +7,7 @@ import {
   Pressable,
   FlatList,
 } from "react-native";
-import React, { useEffect } from "react";
+import React from "react";
 import useToken from "../hooks/useToken";
 import { Colors } from "../styles/styled";
 import { Entypo } from "@expo/vector-icons";
