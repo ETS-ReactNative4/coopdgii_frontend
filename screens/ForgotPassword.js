@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, Image } from "react-native";
 import Btn_icon from "../components/Btn_icon";
 import btnDrawerStyle from "../styles/btnDrawerStyle";
@@ -9,12 +9,10 @@ import ForgotPass from "../assets/ForgotPass.png";
 import ForgotPassword_styled from "../styles/ForgotPassword_styled";
 import Btn_link from "../components/Btn_link";
 const ForgotPassword = ({ navigation }) => {
-  const [email, setEmail] = useState("");
   const openDrawer = () => {
     navigation.toggleDrawer();
   };
-
-  const handleChange = (name, text) => setEmail(text);
+  const handleChange = (name, text) => console.log(`${name} and ${text}`);
 
   return (
     <View style={ForgotPassword_styled.page}>
@@ -40,10 +38,9 @@ const ForgotPassword = ({ navigation }) => {
         </Text>
         <Custom_input
           placeholder="Escribe la contraseña otra vez"
-          value={email}
-          handleChange={handleChange}
           name="email"
           secure={true}
+          onChange={handleChange}
           iconName="at-circle-outline"
           color={Colors.third}
         />

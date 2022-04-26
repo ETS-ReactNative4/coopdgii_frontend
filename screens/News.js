@@ -8,6 +8,9 @@ import newsBackground from "../assets/newsBackground.jpg";
 import New_card from "../components/New_card";
 import { Entypo } from "@expo/vector-icons";
 import LoandingModal from "../components/LoandingModal";
+import btnDrawerStyle from "../styles/btnDrawerStyle";
+import Btn_link from "../components/Btn_link";
+import Btn_icon from "../components/Btn_icon";
 
 export default function News({ navigation }) {
   const { data, loading, error } = useGet(
@@ -31,14 +34,12 @@ export default function News({ navigation }) {
   return (
     <>
       <View style={News_pages.page}>
-        <View style={{ position: "absolute", zIndex: 20, top: 10, left: 10 }}>
-          <Entypo
-            name="menu"
-            size={26}
-            color={Colors.third}
-            onPress={openDrawer}
-          />
-        </View>
+        <Btn_icon
+          icon={<Entypo name="menu" size={24} color={"red"} />}
+          color={Colors.white}
+          onPress={openDrawer}
+          styleButton={[btnDrawerStyle.btn]}
+        />
         <View style={News_pages.header}>
           <ImageBackground
             source={newsBackground}

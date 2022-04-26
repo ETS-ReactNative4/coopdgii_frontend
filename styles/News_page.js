@@ -6,7 +6,7 @@ const News_pages = StyleSheet.create({
   page: {
     marginTop: StatusBar.currentHeight,
     height: height,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: Colors.white,
   },
   header: {
     height: height * 0.15,

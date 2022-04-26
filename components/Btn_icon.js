@@ -5,10 +5,7 @@ import { Colors } from "../styles/styled";
 
 const Btn_icon = ({ onPress, icon, styleButton, color }) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styleButton, { backgroundColor: color }]}
-    >
+    <TouchableOpacity onPress={onPress} style={[styleButton]}>
       {icon}
     </TouchableOpacity>
   );

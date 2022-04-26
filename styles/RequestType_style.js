@@ -4,9 +4,9 @@ import { Colors } from "./styled";
 const { height, width } = Dimensions.get("screen");
 const RequestType_styled = StyleSheet.create({
   page: {
+    marginTop: StatusBar.currentHeight,
     height: height,
     width: width,
-    marginTop: StatusBar.currentHeight,
     backgroundColor: Colors.white,
   },
   header: {
@@ -15,15 +15,6 @@ const RequestType_styled = StyleSheet.create({
     backgroundColor: Colors.third,
     borderBottomEndRadius: 25,
     borderBottomLeftRadius: 25,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.65,
-    marginBottom: 15,
-    elevation: 8,
   },
   body: {
     marginHorizontal: 20,

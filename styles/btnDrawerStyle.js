@@ -5,7 +5,7 @@ const btnDrawerStyle = StyleSheet.create({
     position: "absolute",
     top: 20,
     left: 10,
-    zIndex: 1,
+    zIndex: 20,
   },
 });
 
