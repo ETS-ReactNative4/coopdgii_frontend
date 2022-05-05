@@ -4,7 +4,7 @@ export default function setData(form, id, token) {
   obj.append("token", `${token}`);
   obj.append("tipo", id);
   obj.append("datos", JSON.stringify(form));
-  fetch("https://coopdgii.com/coopvirtual/App/solicitudes_registro", {
+  fetch("YOUR-API-ADDRESS", {
     method: "POST",
     body: obj,
   })
