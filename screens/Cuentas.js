@@ -24,12 +24,12 @@ import Card_modal from "../components/Card_modal";
 import useStore from "../hooks/useStore";
 
 const token = {
-  token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
+  token: "TOKEN",
 };
 export default function Cuentas({ navigation }) {
   const [name, setName] = useState();
   const { datauser, loading } = useToken(
-    "https://coopdgii.com/coopvirtual/App/resumen",
+    "YOUR-API-ADDRESS",
     token
   );
   const { nombre } = useStore();
