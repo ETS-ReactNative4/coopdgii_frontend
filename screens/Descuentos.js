@@ -15,12 +15,12 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 
 const token = {
-  token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
+  token: "TOKEN",
 };
 
 const Descuentos = ({ navigation }) => {
   const { datauser, loading } = useToken(
-    "https://coopdgii.com/coopvirtual/App/descuentos",
+    "YOUR-API-ADDRESS",
     token
   );
 
