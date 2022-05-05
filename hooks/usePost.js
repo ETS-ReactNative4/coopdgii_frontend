@@ -7,7 +7,6 @@ function usePost(url, user, pass) {
   const [datainfo, setDataInfo] = useState(null);
 
   useEffect(() => {
-    console.log("se enviaron datos, y no has escrito nada");
     setLoading(true);
     fetch(url, {
       method: "POST",
