@@ -14,7 +14,7 @@ import Btn_icon from "../components/Btn_icon";
 
 export default function News({ navigation }) {
   const { data, loading, error } = useGet(
-    "https://coopdgii.com/coopvirtual/App/noticias"
+    "YOUR-API-ADDRESS"
   );
   const [isLoadingModalOpen, openLoadingModal, closeLoadingModal] = useModal(
     !loading
