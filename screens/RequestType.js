@@ -16,7 +16,7 @@ import { Colors } from "../styles/styled";
 
 const RequestType = ({ navigation }) => {
   const { data, loading, err } = useHttpGet(
-    "https://coopdgii.com/coopvirtual/App/solicitudes_tipo"
+    "YOUR-API-ADDRESS"
   );
   const { token } = useStore();
   const [form, setForm] = useState({});
