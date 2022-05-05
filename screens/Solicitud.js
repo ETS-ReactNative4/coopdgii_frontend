@@ -16,12 +16,12 @@ import { FontAwesome } from "@expo/vector-icons";
 import LoandingModal from "../components/LoandingModal";
 
 const token = {
-  token: "TESTACCOUNTTOKEN434234345424323JAJAJA",
+  token: "TOKEN",
 };
 
 const Solicitud = ({ navigation }) => {
   const { datauser, loading } = useToken(
-    "https://coopdgii.com/coopvirtual/App/solicitudes",
+    "YOUR-API-ADDRESS",
     token
   );
   const openDrawer = () => {
